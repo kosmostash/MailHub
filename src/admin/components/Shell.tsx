@@ -8,18 +8,21 @@ import { Button } from "./ui";
 
 type NavItem = { href: string; label: string; icon: string };
 
+const account: NavItem = { href: "/account", label: "Account", icon: "i-tabler-user-circle" };
+
 const navFor = (me: Me): Array<NavItem> => {
   switch (me.actor.role) {
     case "superadmin":
-      return [{ href: "/admins", label: "Admins", icon: "i-tabler-users-group" }];
+      return [{ href: "/admins", label: "Admins", icon: "i-tabler-users-group" }, account];
     case "admin":
       return [
         { href: "/", label: "Dashboard", icon: "i-tabler-layout-dashboard" },
         { href: "/operators", label: "Operators", icon: "i-tabler-users" },
         { href: "/providers", label: "Providers", icon: "i-tabler-server" },
+        account,
       ];
     default:
-      return [{ href: "/", label: "Dashboard", icon: "i-tabler-layout-dashboard" }];
+      return [{ href: "/", label: "Dashboard", icon: "i-tabler-layout-dashboard" }, account];
   }
 };
 

@@ -2,6 +2,7 @@ import { useParams } from "@solidjs/router";
 import { useQuery } from "@tanstack/solid-query";
 import { createSignal, For, Show } from "solid-js";
 
+import { EmailActions } from "~/components/EmailActions";
 import { deliveryPill, statePill } from "~/components/EmailList";
 import Link from "~/components/Link";
 import { formatDate, Pill } from "~/components/ui";
@@ -13,7 +14,6 @@ const fmt = (a: Address) => (a.name ? `${a.name} <${a.address}>` : a.address);
 /**
  * Everything about one email (spec §5.5). The HTML body renders in a sandboxed iframe:
  * stored content is untrusted and never runs in the application's origin.
- * Approve, Send and Send to me arrive with Phase 4.
  * */
 export default function EmailPage() {
   const params = useParams<{ id: string }>();
@@ -42,6 +42,8 @@ export default function EmailPage() {
               </div>
             </div>
           </div>
+
+          <EmailActions email={e()} />
 
           <div class="grid gap-4 lg:grid-cols-3">
             <div class="card lg:col-span-1">

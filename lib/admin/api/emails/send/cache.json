@@ -1,0 +1,95 @@
+{
+  "hash": 1584173675,
+  "params": {
+    "id": "ParamsT4003933915",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT4003933915",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "SendOutcome",
+        "path": "@/domain/sending"
+      },
+      "text": "import type { SendOutcome } from \"@/domain/sending\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST389761796",
+        "text": "{ ids: VRefine<Array<string>, { minItems: 1; maxItems: 200 }> }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST389761796",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  ids: VRefine<Array<string>, {\n    minItems: 1;\n    maxItems: 200\n  }>\n}",
+          "properties": [
+            {
+              "name": "ids",
+              "nameDeclaration": "ids",
+              "text": "VRefine<Array<string>, {\n    minItems: 1;\n    maxItems: 200\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(Array<string> with {\n    minItems: 1;\n    maxItems: 200\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ ids: (Array<string> with {\n    minItems: 1;\n    maxItems: 200\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST3865300521",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ outcomes: Array<SendOutcome> }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST3865300521",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  outcomes: Array<(({\n    id: string;\n    ok: true;\n    email: {\n      id: string;\n      collectionId: string;\n      from: {\n        address: string;\n        name?: string\n      };\n      to: Array<{\n        address: string;\n        name?: string\n      }>;\n      cc: Array<{\n        address: string;\n        name?: string\n      }>;\n      bcc: Array<{\n        address: string;\n        name?: string\n      }>;\n      subject: string;\n      text: ((string) | (null));\n      html: ((string) | (null));\n      state: ((\"pending\") | (\"ready\") | (\"sent\"));\n      deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"));\n      attempts: number;\n      lastError: ((string) | (null));\n      providerMessageId: ((string) | (null));\n      source: ((\"http\") | (\"smtp\"));\n      createdAt: string;\n      reviewedAt: ((string) | (null));\n      sentAt: ((string) | (null))\n    }\n  }) | ({\n    id: string;\n    ok: false;\n    code: ((\"not_found\") | (\"not_ready\") | (\"no_provider\") | (\"already_sending\") | (\"provider_error\") | (\"provider_not_implemented\"));\n    message: string\n  }))>\n}",
+            "properties": [
+              {
+                "name": "outcomes",
+                "nameDeclaration": "outcomes",
+                "text": "Array<(({\n    id: string;\n    ok: true;\n    email: {\n      id: string;\n      collectionId: string;\n      from: {\n        address: string;\n        name?: string\n      };\n      to: Array<{\n        address: string;\n        name?: string\n      }>;\n      cc: Array<{\n        address: string;\n        name?: string\n      }>;\n      bcc: Array<{\n        address: string;\n        name?: string\n      }>;\n      subject: string;\n      text: ((string) | (null));\n      html: ((string) | (null));\n      state: ((\"pending\") | (\"ready\") | (\"sent\"));\n      deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"));\n      attempts: number;\n      lastError: ((string) | (null));\n      providerMessageId: ((string) | (null));\n      source: ((\"http\") | (\"smtp\"));\n      createdAt: string;\n      reviewedAt: ((string) | (null));\n      sentAt: ((string) | (null))\n    }\n  }) | ({\n    id: string;\n    ok: false;\n    code: ((\"not_found\") | (\"not_ready\") | (\"no_provider\") | (\"already_sending\") | (\"provider_error\") | (\"provider_not_implemented\"));\n    message: string\n  }))>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<(({ id: string, ok: true, email: { id: string, collectionId: string, from: { address: string, name?: string }, to: Array<{ address: string, name?: string }>, cc: Array<{ address: string, name?: string }>, bcc: Array<{ address: string, name?: string }>, subject: string, text: ((string) | (null)), html: ((string) | (null)), state: ((\"pending\") | (\"ready\") | (\"sent\")), deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\")), attempts: number, lastError: ((string) | (null)), providerMessageId: ((string) | (null)), source: ((\"http\") | (\"smtp\")), createdAt: string, reviewedAt: ((string) | (null)), sentAt: ((string) | (null)) } }) | ({ id: string, ok: false, code: ((\"not_found\") | (\"not_ready\") | (\"no_provider\") | (\"already_sending\") | (\"provider_error\") | (\"provider_not_implemented\")), message: string }))>"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ outcomes: Array<(({ id: string, ok: true, email: { id: string, collectionId: string, from: { address: string, name?: string }, to: Array<{ address: string, name?: string }>, cc: Array<{ address: string, name?: string }>, bcc: Array<{ address: string, name?: string }>, subject: string, text: ((string) | (null)), html: ((string) | (null)), state: ((\"pending\") | (\"ready\") | (\"sent\")), deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\")), attempts: number, lastError: ((string) | (null)), providerMessageId: ((string) | (null)), source: ((\"http\") | (\"smtp\")), createdAt: string, reviewedAt: ((string) | (null)), sentAt: ((string) | (null)) } }) | ({ id: string, ok: false, code: ((\"not_found\") | (\"not_ready\") | (\"no_provider\") | (\"already_sending\") | (\"provider_error\") | (\"provider_not_implemented\")), message: string }))> }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/sending/index.ts": 1053570168
+  }
+}

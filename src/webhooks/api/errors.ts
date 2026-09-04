@@ -1,32 +1,28 @@
-import { accepts } from "hono/accepts";
 import { HTTPException } from "hono/http-exception";
 
-import { ValidationError, HTTPError } from "@kosmojs/core/errors";
+import { HTTPError, ValidationError } from "@kosmojs/core/errors";
 
 import { errorHandlerFactory } from "_/api:factory";
 
+import { DomainError } from "@/domain/errors";
+
+/** Structured JSON errors on every failure (spec §6): `{ error: { code, message, details? } }`. */
 export default errorHandlerFactory(async (error, ctx) => {
-  // Let Hono's HTTPException handle its own response
-  if (error instanceof HTTPException) {
-    return error.getResponse();
+  if (error instanceof DomainError) {
+    return ctx.json(error.toBody(), error.status as 400);
   }
-
-  const [status, message] = Array.isArray(error)
-    ? error
-    : error instanceof HTTPError
-      ? [error.status, error.message]
-      : error instanceof ValidationError
-        ? [400, `${error.target}: ${error.errorMessage}`]
-        : [error.statusCode || 500, error.message];
-
-  // Respond based on what the client accepts
-  const type = accepts(ctx, {
-    header: "Accept",
-    supports: ["application/json", "text/plain"],
-    default: "text/plain",
-  });
-
-  return type === "application/json"
-    ? ctx.json({ error: message }, status)
-    : ctx.text(message, status);
+  if (error instanceof ValidationError) {
+    return ctx.json(
+      { error: { code: "invalid", message: `${error.target}: ${error.errorMessage}`, details: error.errors } },
+      422,
+    );
+  }
+  if (error instanceof HTTPError) {
+    return ctx.json({ error: { code: "error", message: error.message } }, error.status as 400);
+  }
+  if (error instanceof HTTPException) {
+    return ctx.json({ error: { code: "error", message: error.message } }, error.status);
+  }
+  console.error(`[webhooks] ${ctx.req.method} ${ctx.req.path}:`, error);
+  return ctx.json({ error: { code: "internal", message: "Internal error" } }, 500);
 });

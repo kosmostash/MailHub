@@ -1,5 +1,5 @@
 {
-  "hash": 3803202693,
+  "hash": 3818782749,
   "params": {
     "id": "ParamsT2055526591",
     "schema": [
@@ -38,32 +38,79 @@
   "validationDefinitions": [
     {
       "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST86264359",
+        "text": "{\n      events: VRefine<\n        Array<{\n          emailId?: string;\n          messageId?: string;\n          status: \"sent\" | \"delivered\" | \"bounced\";\n        }>,\n        { maxItems: 1000 }\n      >;\n    }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST86264359",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  events: VRefine<Array<{\n    emailId?: string;\n    messageId?: string;\n    status: ((\"sent\") | (\"delivered\") | (\"bounced\"))\n  }>, {\n    maxItems: 1000\n  }>\n}",
+          "properties": [
+            {
+              "name": "events",
+              "nameDeclaration": "events",
+              "text": "VRefine<Array<{\n    emailId?: string;\n    messageId?: string;\n    status: ((\"sent\") | (\"delivered\") | (\"bounced\"))\n  }>, {\n    maxItems: 1000\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(Array<{ emailId?: string, messageId?: string, status: ((\"sent\") | (\"delivered\") | (\"bounced\")) }> with {\n    maxItems: 1000\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ events: (Array<{ emailId?: string, messageId?: string, status: ((\"sent\") | (\"delivered\") | (\"bounced\")) }> with {\n    maxItems: 1000\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
       "target": "response",
       "variants": [
         {
-          "id": "ResponseTPOST2179000099",
-          "status": 501,
+          "id": "ResponseTPOST1836480688",
+          "status": 200,
           "contentType": "json",
-          "body": "{ error: { code: \"not_implemented\"; message: string } }",
+          "body": "{ provider: string; matched: number; unmatched: number }",
           "resolvedType": {
             "kind": "TypeLiteral",
-            "name": "ResponseTPOST2179000099",
+            "name": "ResponseTPOST1836480688",
             "parameters": [],
             "comments": [],
-            "text": "{\n  error: {\n    code: \"not_implemented\";\n    message: string\n  }\n}",
+            "text": "{\n  provider: string;\n  matched: number;\n  unmatched: number\n}",
             "properties": [
               {
-                "name": "error",
-                "nameDeclaration": "error",
-                "text": "{\n    code: \"not_implemented\";\n    message: string\n  }",
+                "name": "provider",
+                "nameDeclaration": "provider",
+                "text": "string",
                 "optional": false,
                 "readonly": false,
-                "typeboxSchema": "{ code: \"not_implemented\", message: string }"
+                "typeboxSchema": "string"
+              },
+              {
+                "name": "matched",
+                "nameDeclaration": "matched",
+                "text": "number",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "number"
+              },
+              {
+                "name": "unmatched",
+                "nameDeclaration": "unmatched",
+                "text": "number",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "number"
               }
             ],
-            "numericProperties": [],
+            "numericProperties": [
+              "matched",
+              "unmatched"
+            ],
             "booleanProperties": [],
-            "typeboxSchema": "{ error: { code: \"not_implemented\", message: string } }"
+            "typeboxSchema": "{ provider: string, matched: number, unmatched: number }"
           }
         }
       ]
