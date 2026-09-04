@@ -123,10 +123,11 @@ and refuses unknown routes or missing parameters at compile time.
 `/api/api/...` unless `apiBase` is set to `"/"`; a folder at `base: "/"` with the default
 `apiBase` gets `/api/...`. Both are consistent once you know that the API prefix is
 `join(base, apiBase)`, but the first build with two folders put routes where I did not
-expect them and I only understood it by reading the generated `dist/run.js`. A one-line
-table in the config docs would have saved that hour. Related: with `apiBase: "/"`, the
-bare prefix `/api` answers 404 while `/api/emails` works, which is correct and still
-looked like a bug at first.
+expect them and I only understood it by reading the generated `dist/run.js`. The KosmoJS
+docs now carry a table of the combinations in the backend introduction ("Where routes end
+up: base and apiBase"), which came out of this build; read it before the first
+multi-folder layout. Related: with `apiBase: "/"`, the bare prefix `/api` answers 404 while
+`/api/emails` works, which is correct and still looked like a bug at first.
 
 **Context typing differs per backend, and I misread it at first.** A Hono folder's
 `env.d.ts` declares `DefaultVariables` and `DefaultBindings` (set with `ctx.set()`); an H3
