@@ -127,7 +127,11 @@ expect them and I only understood it by reading the generated `dist/run.js`. The
 docs now carry a table of the combinations in the backend introduction ("Where routes end
 up: base and apiBase"), which came out of this build; read it before the first
 multi-folder layout. Related: with `apiBase: "/"`, the bare prefix `/api` answers 404 while
-`/api/emails` works, which is correct and still looked like a bug at first.
+`/api/emails` works. I first took that for correct behaviour; it is a bug in 0.4.4.
+`join(base, "/")` leaves a trailing slash, so the dispatcher's prefix becomes `/api/` and
+rejects `/api`, and an index route in that folder registers as `/api/`, which Hono only
+matches at `/api//`. Routes under the prefix are unaffected; the prefix itself is not
+routable until the trailing slash is trimmed in both places.
 
 **Context typing differs per backend, and I misread it at first.** A Hono folder's
 `env.d.ts` declares `DefaultVariables` and `DefaultBindings` (set with `ctx.set()`); an H3
