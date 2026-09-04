@@ -1,0 +1,111 @@
+{
+  "hash": 3764812400,
+  "params": {
+    "id": "ParamsT1943635363",
+    "schema": [
+      {
+        "type": "param",
+        "kind": "required",
+        "name": "id",
+        "const": "id"
+      }
+    ],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT1943635363",
+      "parameters": [],
+      "comments": [],
+      "text": "{\n  \"id\": string\n}",
+      "properties": [
+        {
+          "name": "id",
+          "nameDeclaration": "\"id\"",
+          "text": "string",
+          "optional": false,
+          "readonly": false,
+          "typeboxSchema": "string"
+        }
+      ],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{ \"id\": string }"
+    }
+  },
+  "methods": [
+    "POST"
+  ],
+  "typeDeclarations": [],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST2549406006",
+        "text": "{ testAddressId: VRefine<string, { minLength: 1 }> }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST2549406006",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  testAddressId: VRefine<string, {\n    minLength: 1\n  }>\n}",
+          "properties": [
+            {
+              "name": "testAddressId",
+              "nameDeclaration": "testAddressId",
+              "text": "VRefine<string, {\n    minLength: 1\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    minLength: 1\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ testAddressId: (string with {\n    minLength: 1\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST3025128418",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ ok: true; sentTo: string }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST3025128418",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  ok: true;\n  sentTo: string\n}",
+            "properties": [
+              {
+                "name": "ok",
+                "nameDeclaration": "ok",
+                "text": "true",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "true"
+              },
+              {
+                "name": "sentTo",
+                "nameDeclaration": "sentTo",
+                "text": "string",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "string"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [
+              "ok"
+            ],
+            "typeboxSchema": "{ ok: true, sentTo: string }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {}
+}

@@ -1,0 +1,87 @@
+{
+  "hash": 1684091641,
+  "params": {
+    "id": "ParamsT2171706927",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT2171706927",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "POST"
+  ],
+  "typeDeclarations": [],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST1081933888",
+        "text": "{ code: VRefine<string, { minLength: 1; maxLength: 20 }> }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST1081933888",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  code: VRefine<string, {\n    minLength: 1;\n    maxLength: 20\n  }>\n}",
+          "properties": [
+            {
+              "name": "code",
+              "nameDeclaration": "code",
+              "text": "VRefine<string, {\n    minLength: 1;\n    maxLength: 20\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    minLength: 1;\n    maxLength: 20\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ code: (string with {\n    minLength: 1;\n    maxLength: 20\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST2224063594",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ ok: true }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST2224063594",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  ok: true\n}",
+            "properties": [
+              {
+                "name": "ok",
+                "nameDeclaration": "ok",
+                "text": "true",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "true"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [
+              "ok"
+            ],
+            "typeboxSchema": "{ ok: true }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {}
+}

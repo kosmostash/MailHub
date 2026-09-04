@@ -1,0 +1,103 @@
+{
+  "hash": 476811892,
+  "params": {
+    "id": "ParamsT3867600430",
+    "schema": [
+      {
+        "type": "param",
+        "kind": "required",
+        "name": "id",
+        "const": "id"
+      }
+    ],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3867600430",
+      "parameters": [],
+      "comments": [],
+      "text": "{\n  \"id\": string\n}",
+      "properties": [
+        {
+          "name": "id",
+          "nameDeclaration": "\"id\"",
+          "text": "string",
+          "optional": false,
+          "readonly": false,
+          "typeboxSchema": "string"
+        }
+      ],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{ \"id\": string }"
+    }
+  },
+  "methods": [
+    "POST"
+  ],
+  "typeDeclarations": [],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST2672235502",
+        "text": "{ password: VRefine<string, { minLength: 8; maxLength: 200 }> }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST2672235502",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  password: VRefine<string, {\n    minLength: 8;\n    maxLength: 200\n  }>\n}",
+          "properties": [
+            {
+              "name": "password",
+              "nameDeclaration": "password",
+              "text": "VRefine<string, {\n    minLength: 8;\n    maxLength: 200\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    minLength: 8;\n    maxLength: 200\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ password: (string with {\n    minLength: 8;\n    maxLength: 200\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST3144032880",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ ok: true }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST3144032880",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  ok: true\n}",
+            "properties": [
+              {
+                "name": "ok",
+                "nameDeclaration": "ok",
+                "text": "true",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "true"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [
+              "ok"
+            ],
+            "typeboxSchema": "{ ok: true }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {}
+}

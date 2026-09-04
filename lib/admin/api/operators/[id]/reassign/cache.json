@@ -1,0 +1,152 @@
+{
+  "hash": 1993184023,
+  "params": {
+    "id": "ParamsT1115521599",
+    "schema": [
+      {
+        "type": "param",
+        "kind": "required",
+        "name": "id",
+        "const": "id"
+      }
+    ],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT1115521599",
+      "parameters": [],
+      "comments": [],
+      "text": "{\n  \"id\": string\n}",
+      "properties": [
+        {
+          "name": "id",
+          "nameDeclaration": "\"id\"",
+          "text": "string",
+          "optional": false,
+          "readonly": false,
+          "typeboxSchema": "string"
+        }
+      ],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{ \"id\": string }"
+    }
+  },
+  "methods": [
+    "GET",
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "ReassignmentSummary",
+        "path": "@/domain/accounts/governance"
+      },
+      "text": "import type { ReassignmentSummary } from \"@/domain/accounts/governance\";"
+    },
+    {
+      "importDeclaration": {
+        "name": "PublicUser",
+        "path": "@/domain/accounts/types"
+      },
+      "text": "import type { PublicUser } from \"@/domain/accounts/types\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET3327166423",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ targets: Array<PublicUser> }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET3327166423",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  targets: Array<{\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }>\n}",
+            "properties": [
+              {
+                "name": "targets",
+                "nameDeclaration": "targets",
+                "text": "Array<{\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }>"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ targets: Array<{ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }> }"
+          }
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST4241570055",
+        "text": "{ targetId: VRefine<string, { minLength: 1 }> }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST4241570055",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  targetId: VRefine<string, {\n    minLength: 1\n  }>\n}",
+          "properties": [
+            {
+              "name": "targetId",
+              "nameDeclaration": "targetId",
+              "text": "VRefine<string, {\n    minLength: 1\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    minLength: 1\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ targetId: (string with {\n    minLength: 1\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST2989161051",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ summary: ReassignmentSummary }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST2989161051",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  summary: {\n    from: {\n      id: string;\n      email: string\n    };\n    to: {\n      id: string;\n      email: string\n    };\n    collections: number;\n    operators: number;\n    providers: number;\n    renamedProviders: Array<{\n      id: string;\n      from: string;\n      to: string\n    }>\n  }\n}",
+            "properties": [
+              {
+                "name": "summary",
+                "nameDeclaration": "summary",
+                "text": "{\n    from: {\n      id: string;\n      email: string\n    };\n    to: {\n      id: string;\n      email: string\n    };\n    collections: number;\n    operators: number;\n    providers: number;\n    renamedProviders: Array<{\n      id: string;\n      from: string;\n      to: string\n    }>\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ from: { id: string, email: string }, to: { id: string, email: string }, collections: number, operators: number, providers: number, renamedProviders: Array<{ id: string, from: string, to: string }> }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ summary: { from: { id: string, email: string }, to: { id: string, email: string }, collections: number, operators: number, providers: number, renamedProviders: Array<{ id: string, from: string, to: string }> } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/accounts/governance.ts": 675043958,
+    "domain/accounts/types.ts": 396401688
+  }
+}

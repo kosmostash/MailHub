@@ -1,0 +1,95 @@
+{
+  "hash": 2394809428,
+  "params": {
+    "id": "ParamsT3661605060",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3661605060",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "ConfirmationRequest",
+        "path": "@/domain/confirmation"
+      },
+      "text": "import type { ConfirmationRequest } from \"@/domain/confirmation\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST4227977922",
+        "text": "{ newEmail: VRefine<string, { format: \"email\" }> }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST4227977922",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  newEmail: VRefine<string, {\n    format: \"email\"\n  }>\n}",
+          "properties": [
+            {
+              "name": "newEmail",
+              "nameDeclaration": "newEmail",
+              "text": "VRefine<string, {\n    format: \"email\"\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    format: \"email\"\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ newEmail: (string with {\n    format: \"email\"\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST1637547959",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ confirmation: ConfirmationRequest }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST1637547959",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  confirmation: {\n    method: ((\"totp\") | (\"email\"));\n    sentTo: ((string) | (null));\n    expiresAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "confirmation",
+                "nameDeclaration": "confirmation",
+                "text": "{\n    method: ((\"totp\") | (\"email\"));\n    sentTo: ((string) | (null));\n    expiresAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ method: ((\"totp\") | (\"email\")), sentTo: ((string) | (null)), expiresAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ confirmation: { method: ((\"totp\") | (\"email\")), sentTo: ((string) | (null)), expiresAt: string } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/confirmation/index.ts": 17799051
+  }
+}

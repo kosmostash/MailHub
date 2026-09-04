@@ -1,0 +1,95 @@
+{
+  "hash": 1893765605,
+  "params": {
+    "id": "ParamsT3470402323",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3470402323",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "GET"
+  ],
+  "typeDeclarations": [],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET1798582447",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ ok: true }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET1798582447",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  ok: true\n}",
+            "properties": [
+              {
+                "name": "ok",
+                "nameDeclaration": "ok",
+                "text": "true",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "true"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [
+              "ok"
+            ],
+            "typeboxSchema": "{ ok: true }"
+          }
+        },
+        {
+          "id": "ResponseTGET2736655354",
+          "status": 503,
+          "contentType": "json",
+          "body": "{ ok: false; error: string }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET2736655354",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  ok: false;\n  error: string\n}",
+            "properties": [
+              {
+                "name": "ok",
+                "nameDeclaration": "ok",
+                "text": "false",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "false"
+              },
+              {
+                "name": "error",
+                "nameDeclaration": "error",
+                "text": "string",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "string"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [
+              "ok"
+            ],
+            "typeboxSchema": "{ ok: false, error: string }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {}
+}

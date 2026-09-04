@@ -1,0 +1,75 @@
+{
+  "hash": 1009658429,
+  "params": {
+    "id": "ParamsT3347676264",
+    "schema": [
+      {
+        "type": "param",
+        "kind": "required",
+        "name": "id",
+        "const": "id"
+      }
+    ],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3347676264",
+      "parameters": [],
+      "comments": [],
+      "text": "{\n  \"id\": string\n}",
+      "properties": [
+        {
+          "name": "id",
+          "nameDeclaration": "\"id\"",
+          "text": "string",
+          "optional": false,
+          "readonly": false,
+          "typeboxSchema": "string"
+        }
+      ],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{ \"id\": string }"
+    }
+  },
+  "methods": [
+    "DELETE"
+  ],
+  "typeDeclarations": [],
+  "validationDefinitions": [
+    {
+      "method": "DELETE",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTDELETE2443619208",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ ok: true }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTDELETE2443619208",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  ok: true\n}",
+            "properties": [
+              {
+                "name": "ok",
+                "nameDeclaration": "ok",
+                "text": "true",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "true"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [
+              "ok"
+            ],
+            "typeboxSchema": "{ ok: true }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {}
+}

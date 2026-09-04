@@ -1,0 +1,287 @@
+{
+  "hash": 104194387,
+  "params": {
+    "id": "ParamsT1283582034",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT1283582034",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "EmailView",
+        "path": "@/domain/emails"
+      },
+      "text": "import type { EmailView } from \"@/domain/emails\";"
+    },
+    {
+      "typeAliasDeclaration": {
+        "name": "AddressInput"
+      },
+      "text": "type AddressInput = string | { address: string; name?: string };"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST2963885276",
+        "text": "{\n      from: AddressInput;\n      to: VRefine<Array<AddressInput>, { minItems: 1 }>;\n      cc?: Array<AddressInput>;\n      bcc?: Array<AddressInput>;\n      subject?: VRefine<string, { maxLength: 2000 }>;\n      text?: string;\n      html?: string;\n    }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST2963885276",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  from: ((string) | ({\n    address: string;\n    name?: string\n  }));\n  to: VRefine<Array<((string) | ({\n    address: string;\n    name?: string\n  }))>, {\n    minItems: 1\n  }>;\n  cc?: Array<((string) | ({\n    address: string;\n    name?: string\n  }))>;\n  bcc?: Array<((string) | ({\n    address: string;\n    name?: string\n  }))>;\n  subject?: VRefine<string, {\n    maxLength: 2000\n  }>;\n  text?: string;\n  html?: string\n}",
+          "properties": [
+            {
+              "name": "from",
+              "nameDeclaration": "from",
+              "text": "((string) | ({\n    address: string;\n    name?: string\n  }))",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "((string) | ({ address: string, name?: string }))"
+            },
+            {
+              "name": "to",
+              "nameDeclaration": "to",
+              "text": "VRefine<Array<((string) | ({\n    address: string;\n    name?: string\n  }))>, {\n    minItems: 1\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(Array<((string) | ({ address: string, name?: string }))> with {\n    minItems: 1\n  })"
+            },
+            {
+              "name": "cc",
+              "nameDeclaration": "cc",
+              "text": "Array<((string) | ({\n    address: string;\n    name?: string\n  }))>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "Array<((string) | ({ address: string, name?: string }))>"
+            },
+            {
+              "name": "bcc",
+              "nameDeclaration": "bcc",
+              "text": "Array<((string) | ({\n    address: string;\n    name?: string\n  }))>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "Array<((string) | ({ address: string, name?: string }))>"
+            },
+            {
+              "name": "subject",
+              "nameDeclaration": "subject",
+              "text": "VRefine<string, {\n    maxLength: 2000\n  }>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    maxLength: 2000\n  })"
+            },
+            {
+              "name": "text",
+              "nameDeclaration": "text",
+              "text": "string",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "string"
+            },
+            {
+              "name": "html",
+              "nameDeclaration": "html",
+              "text": "string",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "string"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ from: ((string) | ({ address: string, name?: string })), to: (Array<((string) | ({ address: string, name?: string }))> with {\n    minItems: 1\n  }), cc?: Array<((string) | ({ address: string, name?: string }))>, bcc?: Array<((string) | ({ address: string, name?: string }))>, subject?: (string with {\n    maxLength: 2000\n  }), text?: string, html?: string }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST62817405",
+          "status": 201,
+          "contentType": "json",
+          "body": "EmailView",
+          "resolvedType": {
+            "kind": "TypeReference",
+            "name": "ResponseTPOST62817405",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  id: string;\n  collectionId: string;\n  from: {\n    address: string;\n    name?: string\n  };\n  to: Array<{\n    address: string;\n    name?: string\n  }>;\n  cc: Array<{\n    address: string;\n    name?: string\n  }>;\n  bcc: Array<{\n    address: string;\n    name?: string\n  }>;\n  subject: string;\n  text: ((string) | (null));\n  html: ((string) | (null));\n  state: ((\"pending\") | (\"ready\") | (\"sent\"));\n  deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"));\n  attempts: number;\n  lastError: ((string) | (null));\n  providerMessageId: ((string) | (null));\n  source: ((\"http\") | (\"smtp\"));\n  createdAt: string;\n  reviewedAt: ((string) | (null));\n  sentAt: ((string) | (null))\n}",
+            "properties": [
+              {
+                "name": "id",
+                "nameDeclaration": "id",
+                "text": "string",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "string"
+              },
+              {
+                "name": "collectionId",
+                "nameDeclaration": "collectionId",
+                "text": "string",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "string"
+              },
+              {
+                "name": "from",
+                "nameDeclaration": "from",
+                "text": "{\n    address: string;\n    name?: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ address: string, name?: string }"
+              },
+              {
+                "name": "to",
+                "nameDeclaration": "to",
+                "text": "Array<{\n    address: string;\n    name?: string\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ address: string, name?: string }>"
+              },
+              {
+                "name": "cc",
+                "nameDeclaration": "cc",
+                "text": "Array<{\n    address: string;\n    name?: string\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ address: string, name?: string }>"
+              },
+              {
+                "name": "bcc",
+                "nameDeclaration": "bcc",
+                "text": "Array<{\n    address: string;\n    name?: string\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ address: string, name?: string }>"
+              },
+              {
+                "name": "subject",
+                "nameDeclaration": "subject",
+                "text": "string",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "string"
+              },
+              {
+                "name": "text",
+                "nameDeclaration": "text",
+                "text": "((string) | (null))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((string) | (null))"
+              },
+              {
+                "name": "html",
+                "nameDeclaration": "html",
+                "text": "((string) | (null))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((string) | (null))"
+              },
+              {
+                "name": "state",
+                "nameDeclaration": "state",
+                "text": "((\"pending\") | (\"ready\") | (\"sent\"))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((\"pending\") | (\"ready\") | (\"sent\"))"
+              },
+              {
+                "name": "deliveryStatus",
+                "nameDeclaration": "deliveryStatus",
+                "text": "((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"))"
+              },
+              {
+                "name": "attempts",
+                "nameDeclaration": "attempts",
+                "text": "number",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "number"
+              },
+              {
+                "name": "lastError",
+                "nameDeclaration": "lastError",
+                "text": "((string) | (null))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((string) | (null))"
+              },
+              {
+                "name": "providerMessageId",
+                "nameDeclaration": "providerMessageId",
+                "text": "((string) | (null))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((string) | (null))"
+              },
+              {
+                "name": "source",
+                "nameDeclaration": "source",
+                "text": "((\"http\") | (\"smtp\"))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((\"http\") | (\"smtp\"))"
+              },
+              {
+                "name": "createdAt",
+                "nameDeclaration": "createdAt",
+                "text": "string",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "string"
+              },
+              {
+                "name": "reviewedAt",
+                "nameDeclaration": "reviewedAt",
+                "text": "((string) | (null))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((string) | (null))"
+              },
+              {
+                "name": "sentAt",
+                "nameDeclaration": "sentAt",
+                "text": "((string) | (null))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((string) | (null))"
+              }
+            ],
+            "numericProperties": [
+              "attempts"
+            ],
+            "booleanProperties": [],
+            "typeboxSchema": "{ id: string, collectionId: string, from: { address: string, name?: string }, to: Array<{ address: string, name?: string }>, cc: Array<{ address: string, name?: string }>, bcc: Array<{ address: string, name?: string }>, subject: string, text: ((string) | (null)), html: ((string) | (null)), state: ((\"pending\") | (\"ready\") | (\"sent\")), deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\")), attempts: number, lastError: ((string) | (null)), providerMessageId: ((string) | (null)), source: ((\"http\") | (\"smtp\")), createdAt: string, reviewedAt: ((string) | (null)), sentAt: ((string) | (null)) }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/emails/types.ts": 2725148763
+  }
+}

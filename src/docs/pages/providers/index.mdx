@@ -1,0 +1,50 @@
+---
+title: Providers and delivery
+description: How stored emails leave MailHub and how delivery is tracked.
+---
+
+# Providers and delivery
+
+A **provider** is a configured way of delivering email. Admins own providers; every
+provider of an admin is available to every one of that admin's operators, who see only its
+name and type. Credentials are encrypted at rest and never shown again.
+
+## Types
+
+| Type | Configuration | Delivery status |
+| --- | --- | --- |
+| `smtp` | host, port, TLS flag, optional username and password, optional From override | `sent` when the server accepts the message; no later updates |
+
+## Lifecycle
+
+```
+pending ──(approve)──▶ ready ──(successful send)──▶ sent
+```
+
+- Collections in **after review** mode store submissions as `pending`. An operator
+  approves them in the admin app.
+- The **background sender** drains `ready` emails whose collection has a provider,
+  oldest first. A failed hand-off leaves the email `ready` with `attempts` and
+  `lastError`; after three failures it waits for a human.
+- **Send** and **bulk send** in the admin app deliver `ready` emails right away and
+  ignore the attempt cap.
+- **Send to me** delivers a `[test]`-prefixed copy of any email to one of the operator's
+  test addresses, without touching the stored email.
+
+## Delivery webhooks
+
+`POST /webhooks/{provider}` accepts a batch of normalized events and updates delivery
+status by MailHub email id or by the provider's message id:
+
+```json
+{
+  "events": [
+    { "emailId": "cb14a59e-3684-4f98-ae61-54fc43270d45", "status": "delivered" },
+    { "messageId": "<abc@provider>", "status": "bounced" }
+  ]
+}
+```
+
+The response counts what matched: `{ "provider": "…", "matched": 1, "unmatched": 1 }`.
+Unknown ids never cause an error. Webhooks keep updating already-sent emails even when the
+collection's owner is disabled.

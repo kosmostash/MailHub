@@ -1,0 +1,129 @@
+{
+  "hash": 2110865083,
+  "params": {
+    "id": "ParamsT2893285722",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT2893285722",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "GET"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "ActivityEntry",
+        "path": "@/domain/activity"
+      },
+      "text": "import type { ActivityEntry } from \"@/domain/activity\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "query",
+      "schema": {
+        "id": "QueryTGET697339557",
+        "text": "{\n      adminId?: string;\n      operatorId?: string;\n      before?: string;\n      limit?: VRefine<number, { minimum: 1; maximum: 200 }>;\n    }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "QueryTGET697339557",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  adminId?: string;\n  operatorId?: string;\n  before?: string;\n  limit?: VRefine<number, {\n    minimum: 1;\n    maximum: 200\n  }>\n}",
+          "properties": [
+            {
+              "name": "adminId",
+              "nameDeclaration": "adminId",
+              "text": "string",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "string"
+            },
+            {
+              "name": "operatorId",
+              "nameDeclaration": "operatorId",
+              "text": "string",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "string"
+            },
+            {
+              "name": "before",
+              "nameDeclaration": "before",
+              "text": "string",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "string"
+            },
+            {
+              "name": "limit",
+              "nameDeclaration": "limit",
+              "text": "VRefine<number, {\n    minimum: 1;\n    maximum: 200\n  }>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "(number with {\n    minimum: 1;\n    maximum: 200\n  })"
+            }
+          ],
+          "numericProperties": [
+            "limit"
+          ],
+          "booleanProperties": [],
+          "typeboxSchema": "{ adminId?: string, operatorId?: string, before?: string, limit?: (number with {\n    minimum: 1;\n    maximum: 200\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET2185767782",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ entries: Array<ActivityEntry>; nextBefore: string | null }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET2185767782",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  entries: Array<{\n    id: string;\n    at: string;\n    action: ((\"superadmin.created\") | (\"admin.created\") | (\"admin.password_reset\") | (\"admin.disabled\") | (\"admin.enabled\") | (\"admin.reassigned\") | (\"admin.deleted\") | (\"operator.created\") | (\"operator.password_reset\") | (\"operator.disabled\") | (\"operator.enabled\") | (\"operator.reassigned\") | (\"operator.deleted\") | (\"impersonation.started\") | (\"impersonation.ended\") | (\"collection.created\") | (\"collection.updated\") | (\"collection.deleted\") | (\"provider.created\") | (\"provider.updated\") | (\"provider.deleted\") | (\"email.approved\") | (\"email.sent\") | (\"email.send_failed\") | (\"email.test_sent\") | (\"account.email_changed\") | (\"account.password_changed\") | (\"account.totp_enabled\") | (\"account.totp_disabled\") | (\"test_address.created\") | (\"test_address.deleted\"));\n    objectType: ((\"user\") | (\"collection\") | (\"provider\") | (\"email\") | (\"test_address\") | (\"session\"));\n    objectId: ((string) | (null));\n    actor: {\n      id: ((string) | (null));\n      email: ((string) | (null));\n      role: ((((\"superadmin\") | (\"admin\") | (\"operator\"))) | (\"system\"))\n    };\n    via: (({\n      id: ((string) | (null));\n      email: ((string) | (null))\n    }) | (null));\n    details: Record<string, unknown>\n  }>;\n  nextBefore: ((string) | (null))\n}",
+            "properties": [
+              {
+                "name": "entries",
+                "nameDeclaration": "entries",
+                "text": "Array<{\n    id: string;\n    at: string;\n    action: ((\"superadmin.created\") | (\"admin.created\") | (\"admin.password_reset\") | (\"admin.disabled\") | (\"admin.enabled\") | (\"admin.reassigned\") | (\"admin.deleted\") | (\"operator.created\") | (\"operator.password_reset\") | (\"operator.disabled\") | (\"operator.enabled\") | (\"operator.reassigned\") | (\"operator.deleted\") | (\"impersonation.started\") | (\"impersonation.ended\") | (\"collection.created\") | (\"collection.updated\") | (\"collection.deleted\") | (\"provider.created\") | (\"provider.updated\") | (\"provider.deleted\") | (\"email.approved\") | (\"email.sent\") | (\"email.send_failed\") | (\"email.test_sent\") | (\"account.email_changed\") | (\"account.password_changed\") | (\"account.totp_enabled\") | (\"account.totp_disabled\") | (\"test_address.created\") | (\"test_address.deleted\"));\n    objectType: ((\"user\") | (\"collection\") | (\"provider\") | (\"email\") | (\"test_address\") | (\"session\"));\n    objectId: ((string) | (null));\n    actor: {\n      id: ((string) | (null));\n      email: ((string) | (null));\n      role: ((((\"superadmin\") | (\"admin\") | (\"operator\"))) | (\"system\"))\n    };\n    via: (({\n      id: ((string) | (null));\n      email: ((string) | (null))\n    }) | (null));\n    details: Record<string, unknown>\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ id: string, at: string, action: ((\"superadmin.created\") | (\"admin.created\") | (\"admin.password_reset\") | (\"admin.disabled\") | (\"admin.enabled\") | (\"admin.reassigned\") | (\"admin.deleted\") | (\"operator.created\") | (\"operator.password_reset\") | (\"operator.disabled\") | (\"operator.enabled\") | (\"operator.reassigned\") | (\"operator.deleted\") | (\"impersonation.started\") | (\"impersonation.ended\") | (\"collection.created\") | (\"collection.updated\") | (\"collection.deleted\") | (\"provider.created\") | (\"provider.updated\") | (\"provider.deleted\") | (\"email.approved\") | (\"email.sent\") | (\"email.send_failed\") | (\"email.test_sent\") | (\"account.email_changed\") | (\"account.password_changed\") | (\"account.totp_enabled\") | (\"account.totp_disabled\") | (\"test_address.created\") | (\"test_address.deleted\")), objectType: ((\"user\") | (\"collection\") | (\"provider\") | (\"email\") | (\"test_address\") | (\"session\")), objectId: ((string) | (null)), actor: { id: ((string) | (null)), email: ((string) | (null)), role: ((((\"superadmin\") | (\"admin\") | (\"operator\"))) | (\"system\")) }, via: (({ id: ((string) | (null)), email: ((string) | (null)) }) | (null)), details: Record<string, unknown> }>"
+              },
+              {
+                "name": "nextBefore",
+                "nameDeclaration": "nextBefore",
+                "text": "((string) | (null))",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "((string) | (null))"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ entries: Array<{ id: string, at: string, action: ((\"superadmin.created\") | (\"admin.created\") | (\"admin.password_reset\") | (\"admin.disabled\") | (\"admin.enabled\") | (\"admin.reassigned\") | (\"admin.deleted\") | (\"operator.created\") | (\"operator.password_reset\") | (\"operator.disabled\") | (\"operator.enabled\") | (\"operator.reassigned\") | (\"operator.deleted\") | (\"impersonation.started\") | (\"impersonation.ended\") | (\"collection.created\") | (\"collection.updated\") | (\"collection.deleted\") | (\"provider.created\") | (\"provider.updated\") | (\"provider.deleted\") | (\"email.approved\") | (\"email.sent\") | (\"email.send_failed\") | (\"email.test_sent\") | (\"account.email_changed\") | (\"account.password_changed\") | (\"account.totp_enabled\") | (\"account.totp_disabled\") | (\"test_address.created\") | (\"test_address.deleted\")), objectType: ((\"user\") | (\"collection\") | (\"provider\") | (\"email\") | (\"test_address\") | (\"session\")), objectId: ((string) | (null)), actor: { id: ((string) | (null)), email: ((string) | (null)), role: ((((\"superadmin\") | (\"admin\") | (\"operator\"))) | (\"system\")) }, via: (({ id: ((string) | (null)), email: ((string) | (null)) }) | (null)), details: Record<string, unknown> }>, nextBefore: ((string) | (null)) }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/activity/index.ts": 1224650967
+  }
+}

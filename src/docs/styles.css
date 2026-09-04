@@ -1,0 +1,20 @@
+:root { color-scheme: light; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #1a1d22; background: #f6f6f2; line-height: 1.55; }
+.docs { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+@media (max-width: 760px) { .docs { grid-template-columns: minmax(0, 1fr); } }
+.docs nav { position: sticky; top: 24px; align-self: start; font-size: 14px; }
+.docs nav .brand { display: block; font-weight: 700; font-size: 18px; margin-bottom: 14px; color: #1a1d22; text-decoration: none; }
+.docs nav a { display: block; padding: 4px 0; color: #4b535e; text-decoration: none; }
+.docs nav a:hover { color: #1f4fd8; }
+.docs main { min-width: 0; max-width: 72ch; }
+.docs h1 { font-size: 30px; line-height: 1.1; margin: 0 0 12px; }
+.docs h2 { font-size: 21px; margin: 32px 0 10px; }
+.docs h3 { font-size: 16px; margin: 22px 0 6px; }
+.docs code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; background: #eeeff4; padding: .1em .35em; border-radius: 4px; }
+.docs pre { background: #eeeff4; border: 1px solid #d9dad2; border-radius: 6px; padding: 12px 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+.docs pre code { background: none; padding: 0; }
+.docs table { border-collapse: collapse; width: 100%; font-size: 14px; margin: 10px 0 16px; }
+.docs th, .docs td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid #d9dad2; }
+.docs th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #7a828d; }
+.docs a { color: #163ba6; }
+.docs .note { border-left: 3px solid #1f4fd8; background: #fff; padding: 10px 14px; margin: 14px 0; }

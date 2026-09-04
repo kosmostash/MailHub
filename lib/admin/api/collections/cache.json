@@ -1,0 +1,180 @@
+{
+  "hash": 526211672,
+  "params": {
+    "id": "ParamsT3542471662",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3542471662",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "GET",
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "CollectionView",
+        "path": "@/domain/collections"
+      },
+      "text": "import type { CollectionView } from \"@/domain/collections\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "query",
+      "schema": {
+        "id": "QueryTGET3852567927",
+        "text": "{ operatorId?: string; adminId?: string }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "QueryTGET3852567927",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  operatorId?: string;\n  adminId?: string\n}",
+          "properties": [
+            {
+              "name": "operatorId",
+              "nameDeclaration": "operatorId",
+              "text": "string",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "string"
+            },
+            {
+              "name": "adminId",
+              "nameDeclaration": "adminId",
+              "text": "string",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "string"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ operatorId?: string, adminId?: string }"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET2405364500",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ collections: Array<CollectionView> }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET2405364500",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  collections: Array<{\n    id: string;\n    name: string;\n    scheduleMode: ((\"after_review\") | (\"immediate\"));\n    provider: (({\n      id: string;\n      name: string;\n      type: string\n    }) | (null));\n    operator: {\n      id: string;\n      email: string;\n      adminId: string\n    };\n    counters: {\n      total: number;\n      pending: number;\n      ready: number;\n      sent: number;\n      delivered: number;\n      bounced: number\n    };\n    createdAt: string;\n    updatedAt: string\n  }>\n}",
+            "properties": [
+              {
+                "name": "collections",
+                "nameDeclaration": "collections",
+                "text": "Array<{\n    id: string;\n    name: string;\n    scheduleMode: ((\"after_review\") | (\"immediate\"));\n    provider: (({\n      id: string;\n      name: string;\n      type: string\n    }) | (null));\n    operator: {\n      id: string;\n      email: string;\n      adminId: string\n    };\n    counters: {\n      total: number;\n      pending: number;\n      ready: number;\n      sent: number;\n      delivered: number;\n      bounced: number\n    };\n    createdAt: string;\n    updatedAt: string\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ id: string, name: string, scheduleMode: ((\"after_review\") | (\"immediate\")), provider: (({ id: string, name: string, type: string }) | (null)), operator: { id: string, email: string, adminId: string }, counters: { total: number, pending: number, ready: number, sent: number, delivered: number, bounced: number }, createdAt: string, updatedAt: string }>"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ collections: Array<{ id: string, name: string, scheduleMode: ((\"after_review\") | (\"immediate\")), provider: (({ id: string, name: string, type: string }) | (null)), operator: { id: string, email: string, adminId: string }, counters: { total: number, pending: number, ready: number, sent: number, delivered: number, bounced: number }, createdAt: string, updatedAt: string }> }"
+          }
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST3852567927",
+        "text": "{\n      name: VRefine<string, { minLength: 1; maxLength: 100 }>;\n      scheduleMode?: \"after_review\" | \"immediate\";\n      providerId?: string | null;\n    }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST3852567927",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  name: VRefine<string, {\n    minLength: 1;\n    maxLength: 100\n  }>;\n  scheduleMode?: ((\"after_review\") | (\"immediate\"));\n  providerId?: ((string) | (null))\n}",
+          "properties": [
+            {
+              "name": "name",
+              "nameDeclaration": "name",
+              "text": "VRefine<string, {\n    minLength: 1;\n    maxLength: 100\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    minLength: 1;\n    maxLength: 100\n  })"
+            },
+            {
+              "name": "scheduleMode",
+              "nameDeclaration": "scheduleMode",
+              "text": "((\"after_review\") | (\"immediate\"))",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "((\"after_review\") | (\"immediate\"))"
+            },
+            {
+              "name": "providerId",
+              "nameDeclaration": "providerId",
+              "text": "((string) | (null))",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "((string) | (null))"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ name: (string with {\n    minLength: 1;\n    maxLength: 100\n  }), scheduleMode?: ((\"after_review\") | (\"immediate\")), providerId?: ((string) | (null)) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST3323964694",
+          "status": 201,
+          "contentType": "json",
+          "body": "{ collection: CollectionView }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST3323964694",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  collection: {\n    id: string;\n    name: string;\n    scheduleMode: ((\"after_review\") | (\"immediate\"));\n    provider: (({\n      id: string;\n      name: string;\n      type: string\n    }) | (null));\n    operator: {\n      id: string;\n      email: string;\n      adminId: string\n    };\n    counters: {\n      total: number;\n      pending: number;\n      ready: number;\n      sent: number;\n      delivered: number;\n      bounced: number\n    };\n    createdAt: string;\n    updatedAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "collection",
+                "nameDeclaration": "collection",
+                "text": "{\n    id: string;\n    name: string;\n    scheduleMode: ((\"after_review\") | (\"immediate\"));\n    provider: (({\n      id: string;\n      name: string;\n      type: string\n    }) | (null));\n    operator: {\n      id: string;\n      email: string;\n      adminId: string\n    };\n    counters: {\n      total: number;\n      pending: number;\n      ready: number;\n      sent: number;\n      delivered: number;\n      bounced: number\n    };\n    createdAt: string;\n    updatedAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, name: string, scheduleMode: ((\"after_review\") | (\"immediate\")), provider: (({ id: string, name: string, type: string }) | (null)), operator: { id: string, email: string, adminId: string }, counters: { total: number, pending: number, ready: number, sent: number, delivered: number, bounced: number }, createdAt: string, updatedAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ collection: { id: string, name: string, scheduleMode: ((\"after_review\") | (\"immediate\")), provider: (({ id: string, name: string, type: string }) | (null)), operator: { id: string, email: string, adminId: string }, counters: { total: number, pending: number, ready: number, sent: number, delivered: number, bounced: number }, createdAt: string, updatedAt: string } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/collections/index.ts": 2471677179
+  }
+}

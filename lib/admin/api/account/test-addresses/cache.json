@@ -1,0 +1,136 @@
+{
+  "hash": 769082467,
+  "params": {
+    "id": "ParamsT1262528991",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT1262528991",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "GET",
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "TestAddressView",
+        "path": "@/domain/accounts/test-addresses"
+      },
+      "text": "import type { TestAddressView } from \"@/domain/accounts/test-addresses\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET2281934027",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ testAddresses: Array<TestAddressView> }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET2281934027",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  testAddresses: Array<{\n    id: string;\n    address: string;\n    label: ((string) | (null));\n    createdAt: string\n  }>\n}",
+            "properties": [
+              {
+                "name": "testAddresses",
+                "nameDeclaration": "testAddresses",
+                "text": "Array<{\n    id: string;\n    address: string;\n    label: ((string) | (null));\n    createdAt: string\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ id: string, address: string, label: ((string) | (null)), createdAt: string }>"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ testAddresses: Array<{ id: string, address: string, label: ((string) | (null)), createdAt: string }> }"
+          }
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST3983687089",
+        "text": "{\n      address: VRefine<string, { format: \"email\" }>;\n      label?: VRefine<string, { maxLength: 100 }>;\n    }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST3983687089",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  address: VRefine<string, {\n    format: \"email\"\n  }>;\n  label?: VRefine<string, {\n    maxLength: 100\n  }>\n}",
+          "properties": [
+            {
+              "name": "address",
+              "nameDeclaration": "address",
+              "text": "VRefine<string, {\n    format: \"email\"\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    format: \"email\"\n  })"
+            },
+            {
+              "name": "label",
+              "nameDeclaration": "label",
+              "text": "VRefine<string, {\n    maxLength: 100\n  }>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    maxLength: 100\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ address: (string with {\n    format: \"email\"\n  }), label?: (string with {\n    maxLength: 100\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST2241009902",
+          "status": 201,
+          "contentType": "json",
+          "body": "{ testAddress: TestAddressView }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST2241009902",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  testAddress: {\n    id: string;\n    address: string;\n    label: ((string) | (null));\n    createdAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "testAddress",
+                "nameDeclaration": "testAddress",
+                "text": "{\n    id: string;\n    address: string;\n    label: ((string) | (null));\n    createdAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, address: string, label: ((string) | (null)), createdAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ testAddress: { id: string, address: string, label: ((string) | (null)), createdAt: string } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/accounts/test-addresses.ts": 664316927
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "hash": 705146868,
+  "params": {
+    "id": "ParamsT1183617166",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT1183617166",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "GET"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "ProviderTypeInfo",
+        "path": "@/domain/providers/registry"
+      },
+      "text": "import type { ProviderTypeInfo } from \"@/domain/providers/registry\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET48348260",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ types: Array<ProviderTypeInfo> }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET48348260",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  types: Array<{\n    type: string;\n    label: string;\n    fields: Array<{\n      key: string;\n      label: string;\n      type: ((\"text\") | (\"number\") | (\"password\") | (\"boolean\"));\n      required?: boolean;\n      secret?: boolean;\n      placeholder?: string;\n      help?: string\n    }>;\n    implemented: boolean\n  }>\n}",
+            "properties": [
+              {
+                "name": "types",
+                "nameDeclaration": "types",
+                "text": "Array<{\n    type: string;\n    label: string;\n    fields: Array<{\n      key: string;\n      label: string;\n      type: ((\"text\") | (\"number\") | (\"password\") | (\"boolean\"));\n      required?: boolean;\n      secret?: boolean;\n      placeholder?: string;\n      help?: string\n    }>;\n    implemented: boolean\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ type: string, label: string, fields: Array<{ key: string, label: string, type: ((\"text\") | (\"number\") | (\"password\") | (\"boolean\")), required?: boolean, secret?: boolean, placeholder?: string, help?: string }>, implemented: boolean }>"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ types: Array<{ type: string, label: string, fields: Array<{ key: string, label: string, type: ((\"text\") | (\"number\") | (\"password\") | (\"boolean\")), required?: boolean, secret?: boolean, placeholder?: string, help?: string }>, implemented: boolean }> }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/providers/registry.ts": 4044054901
+  }
+}

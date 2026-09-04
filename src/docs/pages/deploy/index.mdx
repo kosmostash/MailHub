@@ -1,0 +1,39 @@
+---
+title: Deploying MailHub
+description: Processes, environment, and the exposure split.
+---
+
+# Deploying MailHub
+
+## Processes
+
+| Process | Command | Role |
+| --- | --- | --- |
+| web | `node dist/run.js -p 4556` | admin app, docs, submission API, webhooks |
+| sender | `node dist/workers/sender.js` | drains ready emails through providers |
+| smtp | `node dist/workers/smtp.js` | SMTP ingestion on port 2525 |
+
+Run `pnpm migrate` (or `node --import tsx db/migrate.ts latest`) before starting them.
+`docker-compose.yml` in the repository wires the three plus Postgres.
+
+## Environment
+
+| Variable | Purpose |
+| --- | --- |
+| `DATABASE_URL` | Postgres connection string |
+| `MAILHUB_SECRET` | 32+ random bytes; encrypts provider credentials |
+| `MAILHUB_PUBLIC_URL` | where users reach the admin app |
+| `MAILHUB_SYSTEM_SMTP_URL`, `MAILHUB_SYSTEM_FROM` | how MailHub sends confirmation codes; required in production |
+| `MAILHUB_SMTP_HOST`, `MAILHUB_SMTP_PORT`, `MAILHUB_SMTP_MAX_MESSAGE_BYTES` | the ingestion listener |
+| `MAILHUB_SENDER_INTERVAL_MS`, `MAILHUB_SENDER_BATCH_SIZE` | the background sender |
+| `PORT` | the web process |
+
+## Exposure
+
+Everything runs on one port; the split happens at your reverse proxy:
+
+- **public**: `/` (these docs), `/admin` (session-authenticated), `/webhooks/*`
+  (providers call it);
+- **private, LAN / DMZ only**: `/api/*` and the SMTP port.
+
+`deploy/Caddyfile` in the repository shows the rule set for Caddy.

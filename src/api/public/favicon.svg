@@ -1,0 +1,57 @@
+<!--
+  KosmoJS scaffold placeholder - replace this with your own mark.
+
+  Both letters are Gajraj One (OFL-1.1, Copyright 2022 The GajrajOne Project Authors),
+  outlined to paths - a favicon cannot wait on a webfont,
+  and an outline renders identically everywhere.
+
+  "osmo" is scaled by width rather than by size: it is set to measure exactly the k's ink width,
+  so the two edges line up and the pair reads as one block.
+  That is what fixes its height at roughly a sixth of the k - which means it carries at 32px and above,
+  and below that it reads as a bar of texture under the letter rather than as a word.
+  That is the intended trade for a lockup this shape, not an oversight.
+
+  Colours sit at a middling lightness on purpose.
+  A tab bar is near-white in one browser and near-black in the next,
+  and this ramp holds around 4:1 against both, so no colour-scheme switching is needed.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="k" x1="0" y1="0" x2="0" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#008991"/>
+      <stop offset="1" stop-color="#2b74ff"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#k)"
+    d="M 5.41 2.49 H 14.68 V 14.99 L 16.4 14.66 L 17.32 7.98 H 26.59 Q 26.55 8.21 26.44 9.04 Q
+       26.32 9.86 26.19 10.92 Q 26.06 11.98 25.92 12.99 Q 25.79 14 25.68 14.69 Q 25.56 15.39
+       25.53 15.42 Q 25.33 15.65 24.3 15.93 Q 23.28 16.21 21.84 16.51 Q 20.4 16.81 18.91 17.07
+       Q 17.42 17.34 16.26 17.55 Q 15.11 17.77 14.68 17.84 V 24.49 H 5.41 Z M 26.26 24.49 H
+       16.99 V 17.74 H 21.62 Q 21.89 17.74 22.63 17.79 Q 23.38 17.84 24.22 17.95 Q 25.06 18.07
+       25.66 18.28 Q 26.26 18.5 26.26 18.86 Z"/>
+  <path fill="url(#k)"
+    d="M 8.94 29.51 H 6.4 Q 6.35 29.51 6.19 29.5 Q 6.03 29.49 5.85 29.47 Q 5.67 29.44 5.54
+       29.39 Q 5.41 29.35 5.41 29.27 V 26.23 Q 5.41 26.15 5.54 26.1 Q 5.67 26.06 5.85 26.03 Q
+       6.03 26.01 6.19 26 Q 6.35 25.99 6.4 25.99 H 8.94 Q 9 25.99 9.16 26 Q 9.32 26.01 9.5
+       26.03 Q 9.68 26.06 9.8 26.1 Q 9.93 26.15 9.93 26.23 V 29.27 Q 9.93 29.35 9.8 29.39 Q
+       9.68 29.44 9.5 29.47 Q 9.32 29.49 9.16 29.5 Q 9 29.51 8.94 29.51 Z M 7.39 29.03 H 7.96 V
+       26.47 H 7.39 Z M 14.34 25.99 V 26.47 H 12.33 V 27.5 H 13.15 Q 13.21 27.5 13.35 27.5 Q
+       13.5 27.5 13.68 27.51 Q 13.87 27.52 14.04 27.54 Q 14.22 27.57 14.33 27.61 Q 14.44 27.66
+       14.44 27.74 V 29.27 Q 14.44 29.35 14.32 29.39 Q 14.19 29.44 14.01 29.47 Q 13.83 29.49
+       13.67 29.5 Q 13.51 29.51 13.45 29.51 H 10.36 V 29.03 H 12.47 V 27.98 H 11.65 Q 11.59
+       27.98 11.45 27.98 Q 11.3 27.98 11.11 27.97 Q 10.93 27.95 10.75 27.93 Q 10.58 27.91 10.47
+       27.86 Q 10.36 27.81 10.36 27.74 V 26.23 Q 10.36 26.15 10.48 26.1 Q 10.61 26.06 10.79
+       26.03 Q 10.97 26.01 11.13 26 Q 11.29 25.99 11.34 25.99 Z M 16.84 29.51 H 14.87 V 26.23 Q
+       14.87 26.15 14.99 26.1 Q 15.12 26.06 15.3 26.03 Q 15.48 26.01 15.64 26 Q 15.8 25.99
+       15.86 25.99 H 18.26 Q 18.31 25.99 18.46 25.99 Q 18.6 26 18.77 26.02 Q 18.93 26.05 19.07
+       26.09 Q 19.2 26.13 19.24 26.19 Q 19.27 26.13 19.4 26.09 Q 19.53 26.05 19.69 26.03 Q
+       19.85 26.01 20 26 Q 20.14 25.99 20.21 25.99 H 20.66 Q 20.71 25.99 20.87 26 Q 21.03 26.01
+       21.21 26.03 Q 21.39 26.06 21.52 26.1 Q 21.64 26.15 21.64 26.23 V 29.51 H 19.67 V 26.47 H
+       19.24 V 29.51 H 17.27 V 26.47 H 16.84 Z M 25.6 29.51 H 23.06 Q 23 29.51 22.84 29.5 Q
+       22.68 29.49 22.5 29.47 Q 22.32 29.44 22.2 29.39 Q 22.07 29.35 22.07 29.27 V 26.23 Q
+       22.07 26.15 22.2 26.1 Q 22.32 26.06 22.5 26.03 Q 22.68 26.01 22.84 26 Q 23 25.99 23.06
+       25.99 H 25.6 Q 25.65 25.99 25.81 26 Q 25.97 26.01 26.15 26.03 Q 26.33 26.06 26.46 26.1 Q
+       26.59 26.15 26.59 26.23 V 29.27 Q 26.59 29.35 26.46 29.39 Q 26.33 29.44 26.15 29.47 Q
+       25.97 29.49 25.81 29.5 Q 25.65 29.51 25.6 29.51 Z M 24.04 29.03 H 24.61 V 26.47 H 24.04
+       Z"/>
+</svg>

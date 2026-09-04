@@ -1,0 +1,187 @@
+{
+  "hash": 2250853137,
+  "params": {
+    "id": "ParamsT3821716503",
+    "schema": [
+      {
+        "type": "param",
+        "kind": "required",
+        "name": "id",
+        "const": "id"
+      }
+    ],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3821716503",
+      "parameters": [],
+      "comments": [],
+      "text": "{\n  \"id\": string\n}",
+      "properties": [
+        {
+          "name": "id",
+          "nameDeclaration": "\"id\"",
+          "text": "string",
+          "optional": false,
+          "readonly": false,
+          "typeboxSchema": "string"
+        }
+      ],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{ \"id\": string }"
+    }
+  },
+  "methods": [
+    "GET",
+    "PATCH",
+    "DELETE"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "ProviderView",
+        "path": "@/domain/providers"
+      },
+      "text": "import type { ProviderView } from \"@/domain/providers\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET418594052",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ provider: ProviderView }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET418594052",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  provider: {\n    id: string;\n    adminId: string;\n    name: string;\n    type: string;\n    config: ((Record<string, unknown>) | (null));\n    collections: number;\n    createdAt: string;\n    updatedAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "provider",
+                "nameDeclaration": "provider",
+                "text": "{\n    id: string;\n    adminId: string;\n    name: string;\n    type: string;\n    config: ((Record<string, unknown>) | (null));\n    collections: number;\n    createdAt: string;\n    updatedAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, adminId: string, name: string, type: string, config: ((Record<string, unknown>) | (null)), collections: number, createdAt: string, updatedAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ provider: { id: string, adminId: string, name: string, type: string, config: ((Record<string, unknown>) | (null)), collections: number, createdAt: string, updatedAt: string } }"
+          }
+        }
+      ]
+    },
+    {
+      "method": "PATCH",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPATCH3118411284",
+        "text": "{\n      name?: VRefine<string, { minLength: 1; maxLength: 100 }>;\n      config?: Record<string, unknown>;\n    }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPATCH3118411284",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  name?: VRefine<string, {\n    minLength: 1;\n    maxLength: 100\n  }>;\n  config?: Record<string, unknown>\n}",
+          "properties": [
+            {
+              "name": "name",
+              "nameDeclaration": "name",
+              "text": "VRefine<string, {\n    minLength: 1;\n    maxLength: 100\n  }>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    minLength: 1;\n    maxLength: 100\n  })"
+            },
+            {
+              "name": "config",
+              "nameDeclaration": "config",
+              "text": "Record<string, unknown>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "Record<string, unknown>"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ name?: (string with {\n    minLength: 1;\n    maxLength: 100\n  }), config?: Record<string, unknown> }"
+        }
+      }
+    },
+    {
+      "method": "PATCH",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPATCH418594052",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ provider: ProviderView }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPATCH418594052",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  provider: {\n    id: string;\n    adminId: string;\n    name: string;\n    type: string;\n    config: ((Record<string, unknown>) | (null));\n    collections: number;\n    createdAt: string;\n    updatedAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "provider",
+                "nameDeclaration": "provider",
+                "text": "{\n    id: string;\n    adminId: string;\n    name: string;\n    type: string;\n    config: ((Record<string, unknown>) | (null));\n    collections: number;\n    createdAt: string;\n    updatedAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, adminId: string, name: string, type: string, config: ((Record<string, unknown>) | (null)), collections: number, createdAt: string, updatedAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ provider: { id: string, adminId: string, name: string, type: string, config: ((Record<string, unknown>) | (null)), collections: number, createdAt: string, updatedAt: string } }"
+          }
+        }
+      ]
+    },
+    {
+      "method": "DELETE",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTDELETE2254060522",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ ok: true }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTDELETE2254060522",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  ok: true\n}",
+            "properties": [
+              {
+                "name": "ok",
+                "nameDeclaration": "ok",
+                "text": "true",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "true"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [
+              "ok"
+            ],
+            "typeboxSchema": "{ ok: true }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/providers/index.ts": 3962011019
+  }
+}
