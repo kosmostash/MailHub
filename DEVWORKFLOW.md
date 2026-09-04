@@ -181,8 +181,11 @@ from: it is readable, commented, and it is the truth.
 **Small things.** `VRefine` is a global type with no import, which is convenient in route
 files and surprising in an editor without the folder's tsconfig loaded. The TanStack Query
 option is spelled `--tsq` on the CLI and `{ tanstack: { query: true } }` in the config.
-The MDX generator pulls in Preact for SSR, which is a second UI runtime in a Solid project;
-harmless, but unexpected in `package.json`.
+The MDX generator brings Preact as its runtime. I first read that as "a second UI runtime
+in a Solid project", which is the wrong frame: a KosmoJS project has no project-wide
+framework, each folder picks its own, and the docs folder running on Preact next to an
+admin folder on Solid is exactly the per-folder model doing its job. Expect one runtime per
+frontend folder in `package.json`.
 
 ### Things that were not KosmoJS's fault, recorded so you do not blame it either
 
