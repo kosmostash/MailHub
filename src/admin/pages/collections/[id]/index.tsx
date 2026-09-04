@@ -3,13 +3,13 @@ import { useQuery, useQueryClient } from "@tanstack/solid-query";
 import { createSignal, Show } from "solid-js";
 
 import { CollectionForm } from "~/components/CollectionForm";
+import { EmailList } from "~/components/EmailList";
 import { Button, ErrorNote, formatDate } from "~/components/ui";
 import { api, errorMessage } from "~/lib/api";
 import { useMe } from "~/lib/session";
 
 /**
- * One collection (spec §5.3, §5.4): settings, the API key, deletion; the email list
- * arrives with Phase 3.
+ * One collection (spec §5.3, §5.4): settings, the API key, deletion, and the email list.
  * */
 export default function CollectionPage() {
   const params = useParams<{ id: string }>();
@@ -109,7 +109,7 @@ export default function CollectionPage() {
             </div>
           </Show>
 
-          <div class="card text-sm text-gray-600">
+          <div class="card mb-4 text-sm text-gray-600">
             <div class="mb-2 grid grid-cols-3 gap-2 text-center sm:grid-cols-6">
               <Counter label="total" value={c().counters.total} />
               <Counter label="pending" value={c().counters.pending} />
@@ -118,8 +118,10 @@ export default function CollectionPage() {
               <Counter label="delivered" value={c().counters.delivered} />
               <Counter label="bounced" value={c().counters.bounced} />
             </div>
-            <p class="text-xs text-gray-500">Created {formatDate(c().createdAt)}. The email list lands in the next phase.</p>
+            <p class="text-xs text-gray-500">Created {formatDate(c().createdAt)}.</p>
           </div>
+
+          <EmailList collectionId={c().id} />
         </div>
       )}
     </Show>

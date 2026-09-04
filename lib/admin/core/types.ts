@@ -7,6 +7,7 @@ export type StaticParams = {
   "providers": [  ];
   "sign-in": [  ];
   "collections/[id]": [ id: string | number ];
+  "emails/[id]": [ id: string | number ];
 };
 
 export type LinkProps =
@@ -16,4 +17,5 @@ export type LinkProps =
     | [ "providers",  ]
     | [ "sign-in",  ]
     | [ "collections/[id]", id: string | number ]
+    | [ "emails/[id]", id: string | number ]
   ;

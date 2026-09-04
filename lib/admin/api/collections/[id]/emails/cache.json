@@ -1,0 +1,166 @@
+{
+  "hash": 2679212051,
+  "params": {
+    "id": "ParamsT3756010019",
+    "schema": [
+      {
+        "type": "param",
+        "kind": "required",
+        "name": "id",
+        "const": "id"
+      }
+    ],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3756010019",
+      "parameters": [],
+      "comments": [],
+      "text": "{\n  \"id\": string\n}",
+      "properties": [
+        {
+          "name": "id",
+          "nameDeclaration": "\"id\"",
+          "text": "string",
+          "optional": false,
+          "readonly": false,
+          "typeboxSchema": "string"
+        }
+      ],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{ \"id\": string }"
+    }
+  },
+  "methods": [
+    "GET"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "EmailPage",
+        "path": "@/domain/emails"
+      },
+      "text": "import type { EmailPage } from \"@/domain/emails\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "query",
+      "schema": {
+        "id": "QueryTGET3570308899",
+        "text": "{\n      state?: \"pending\" | \"ready\" | \"sent\";\n      delivery?: \"unknown\" | \"sent\" | \"delivered\" | \"bounced\";\n      page?: VRefine<number, { minimum: 1 }>;\n      pageSize?: VRefine<number, { minimum: 1; maximum: 200 }>;\n    }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "QueryTGET3570308899",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  state?: ((\"pending\") | (\"ready\") | (\"sent\"));\n  delivery?: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"));\n  page?: VRefine<number, {\n    minimum: 1\n  }>;\n  pageSize?: VRefine<number, {\n    minimum: 1;\n    maximum: 200\n  }>\n}",
+          "properties": [
+            {
+              "name": "state",
+              "nameDeclaration": "state",
+              "text": "((\"pending\") | (\"ready\") | (\"sent\"))",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "((\"pending\") | (\"ready\") | (\"sent\"))"
+            },
+            {
+              "name": "delivery",
+              "nameDeclaration": "delivery",
+              "text": "((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"))",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"))"
+            },
+            {
+              "name": "page",
+              "nameDeclaration": "page",
+              "text": "VRefine<number, {\n    minimum: 1\n  }>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "(number with {\n    minimum: 1\n  })"
+            },
+            {
+              "name": "pageSize",
+              "nameDeclaration": "pageSize",
+              "text": "VRefine<number, {\n    minimum: 1;\n    maximum: 200\n  }>",
+              "optional": true,
+              "readonly": false,
+              "typeboxSchema": "(number with {\n    minimum: 1;\n    maximum: 200\n  })"
+            }
+          ],
+          "numericProperties": [
+            "page",
+            "pageSize"
+          ],
+          "booleanProperties": [],
+          "typeboxSchema": "{ state?: ((\"pending\") | (\"ready\") | (\"sent\")), delivery?: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\")), page?: (number with {\n    minimum: 1\n  }), pageSize?: (number with {\n    minimum: 1;\n    maximum: 200\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET1612803523",
+          "status": 200,
+          "contentType": "json",
+          "body": "EmailPage",
+          "resolvedType": {
+            "kind": "TypeReference",
+            "name": "ResponseTGET1612803523",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  emails: Array<{\n    id: string;\n    collectionId: string;\n    from: {\n      address: string;\n      name?: string\n    };\n    to: Array<{\n      address: string;\n      name?: string\n    }>;\n    cc: Array<{\n      address: string;\n      name?: string\n    }>;\n    bcc: Array<{\n      address: string;\n      name?: string\n    }>;\n    subject: string;\n    text: ((string) | (null));\n    html: ((string) | (null));\n    state: ((\"pending\") | (\"ready\") | (\"sent\"));\n    deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"));\n    attempts: number;\n    lastError: ((string) | (null));\n    providerMessageId: ((string) | (null));\n    source: ((\"http\") | (\"smtp\"));\n    createdAt: string;\n    reviewedAt: ((string) | (null));\n    sentAt: ((string) | (null))\n  }>;\n  total: number;\n  page: number;\n  pageSize: number\n}",
+            "properties": [
+              {
+                "name": "emails",
+                "nameDeclaration": "emails",
+                "text": "Array<{\n    id: string;\n    collectionId: string;\n    from: {\n      address: string;\n      name?: string\n    };\n    to: Array<{\n      address: string;\n      name?: string\n    }>;\n    cc: Array<{\n      address: string;\n      name?: string\n    }>;\n    bcc: Array<{\n      address: string;\n      name?: string\n    }>;\n    subject: string;\n    text: ((string) | (null));\n    html: ((string) | (null));\n    state: ((\"pending\") | (\"ready\") | (\"sent\"));\n    deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"));\n    attempts: number;\n    lastError: ((string) | (null));\n    providerMessageId: ((string) | (null));\n    source: ((\"http\") | (\"smtp\"));\n    createdAt: string;\n    reviewedAt: ((string) | (null));\n    sentAt: ((string) | (null))\n  }>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<{ id: string, collectionId: string, from: { address: string, name?: string }, to: Array<{ address: string, name?: string }>, cc: Array<{ address: string, name?: string }>, bcc: Array<{ address: string, name?: string }>, subject: string, text: ((string) | (null)), html: ((string) | (null)), state: ((\"pending\") | (\"ready\") | (\"sent\")), deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\")), attempts: number, lastError: ((string) | (null)), providerMessageId: ((string) | (null)), source: ((\"http\") | (\"smtp\")), createdAt: string, reviewedAt: ((string) | (null)), sentAt: ((string) | (null)) }>"
+              },
+              {
+                "name": "total",
+                "nameDeclaration": "total",
+                "text": "number",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "number"
+              },
+              {
+                "name": "page",
+                "nameDeclaration": "page",
+                "text": "number",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "number"
+              },
+              {
+                "name": "pageSize",
+                "nameDeclaration": "pageSize",
+                "text": "number",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "number"
+              }
+            ],
+            "numericProperties": [
+              "total",
+              "page",
+              "pageSize"
+            ],
+            "booleanProperties": [],
+            "typeboxSchema": "{ emails: Array<{ id: string, collectionId: string, from: { address: string, name?: string }, to: Array<{ address: string, name?: string }>, cc: Array<{ address: string, name?: string }>, bcc: Array<{ address: string, name?: string }>, subject: string, text: ((string) | (null)), html: ((string) | (null)), state: ((\"pending\") | (\"ready\") | (\"sent\")), deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\")), attempts: number, lastError: ((string) | (null)), providerMessageId: ((string) | (null)), source: ((\"http\") | (\"smtp\")), createdAt: string, reviewedAt: ((string) | (null)), sentAt: ((string) | (null)) }>, total: number, page: number, pageSize: number }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/emails/index.ts": 1008520050
+  }
+}

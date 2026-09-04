@@ -41,3 +41,57 @@ export type OutgoingMessage = {
 
 export const formatAddress = (a: Address): string =>
   a.name ? `"${a.name.replace(/"/g, '\\"')}" <${a.address}>` : a.address;
+
+/** An email as the APIs return it (spec §2.7, §3.2, §3.3, §5.5). */
+export type EmailView = {
+  id: string;
+  collectionId: string;
+  from: Address;
+  to: Array<Address>;
+  cc: Array<Address>;
+  bcc: Array<Address>;
+  subject: string;
+  text: string | null;
+  html: string | null;
+  state: EmailState;
+  deliveryStatus: DeliveryStatus;
+  attempts: number;
+  lastError: string | null;
+  providerMessageId: string | null;
+  source: EmailSource;
+  createdAt: string;
+  reviewedAt: string | null;
+  sentAt: string | null;
+};
+
+export const toEmailView = (row: EmailRow): EmailView => ({
+  id: row.id,
+  collectionId: row.collection_id,
+  from: row.from_name ? { address: row.from_address, name: row.from_name } : { address: row.from_address },
+  to: row.to,
+  cc: row.cc,
+  bcc: row.bcc,
+  subject: row.subject,
+  text: row.text,
+  html: row.html,
+  state: row.state,
+  deliveryStatus: row.delivery_status,
+  attempts: row.attempts,
+  lastError: row.last_error,
+  providerMessageId: row.provider_message_id,
+  source: row.source,
+  createdAt: row.created_at.toISOString(),
+  reviewedAt: row.reviewed_at?.toISOString() ?? null,
+  sentAt: row.sent_at?.toISOString() ?? null,
+});
+
+/** The stored email → what a provider sends. */
+export const toOutgoingMessage = (row: EmailRow): OutgoingMessage => ({
+  from: row.from_name ? { address: row.from_address, name: row.from_name } : { address: row.from_address },
+  to: row.to,
+  cc: row.cc,
+  bcc: row.bcc,
+  subject: row.subject,
+  text: row.text ?? undefined,
+  html: row.html ?? undefined,
+});

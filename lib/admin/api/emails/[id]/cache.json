@@ -1,0 +1,83 @@
+{
+  "hash": 3400178775,
+  "params": {
+    "id": "ParamsT668020972",
+    "schema": [
+      {
+        "type": "param",
+        "kind": "required",
+        "name": "id",
+        "const": "id"
+      }
+    ],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT668020972",
+      "parameters": [],
+      "comments": [],
+      "text": "{\n  \"id\": string\n}",
+      "properties": [
+        {
+          "name": "id",
+          "nameDeclaration": "\"id\"",
+          "text": "string",
+          "optional": false,
+          "readonly": false,
+          "typeboxSchema": "string"
+        }
+      ],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{ \"id\": string }"
+    }
+  },
+  "methods": [
+    "GET"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "EmailView",
+        "path": "@/domain/emails"
+      },
+      "text": "import type { EmailView } from \"@/domain/emails\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET2973686682",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ email: EmailView }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET2973686682",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  email: {\n    id: string;\n    collectionId: string;\n    from: {\n      address: string;\n      name?: string\n    };\n    to: Array<{\n      address: string;\n      name?: string\n    }>;\n    cc: Array<{\n      address: string;\n      name?: string\n    }>;\n    bcc: Array<{\n      address: string;\n      name?: string\n    }>;\n    subject: string;\n    text: ((string) | (null));\n    html: ((string) | (null));\n    state: ((\"pending\") | (\"ready\") | (\"sent\"));\n    deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"));\n    attempts: number;\n    lastError: ((string) | (null));\n    providerMessageId: ((string) | (null));\n    source: ((\"http\") | (\"smtp\"));\n    createdAt: string;\n    reviewedAt: ((string) | (null));\n    sentAt: ((string) | (null))\n  }\n}",
+            "properties": [
+              {
+                "name": "email",
+                "nameDeclaration": "email",
+                "text": "{\n    id: string;\n    collectionId: string;\n    from: {\n      address: string;\n      name?: string\n    };\n    to: Array<{\n      address: string;\n      name?: string\n    }>;\n    cc: Array<{\n      address: string;\n      name?: string\n    }>;\n    bcc: Array<{\n      address: string;\n      name?: string\n    }>;\n    subject: string;\n    text: ((string) | (null));\n    html: ((string) | (null));\n    state: ((\"pending\") | (\"ready\") | (\"sent\"));\n    deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\"));\n    attempts: number;\n    lastError: ((string) | (null));\n    providerMessageId: ((string) | (null));\n    source: ((\"http\") | (\"smtp\"));\n    createdAt: string;\n    reviewedAt: ((string) | (null));\n    sentAt: ((string) | (null))\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, collectionId: string, from: { address: string, name?: string }, to: Array<{ address: string, name?: string }>, cc: Array<{ address: string, name?: string }>, bcc: Array<{ address: string, name?: string }>, subject: string, text: ((string) | (null)), html: ((string) | (null)), state: ((\"pending\") | (\"ready\") | (\"sent\")), deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\")), attempts: number, lastError: ((string) | (null)), providerMessageId: ((string) | (null)), source: ((\"http\") | (\"smtp\")), createdAt: string, reviewedAt: ((string) | (null)), sentAt: ((string) | (null)) }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ email: { id: string, collectionId: string, from: { address: string, name?: string }, to: Array<{ address: string, name?: string }>, cc: Array<{ address: string, name?: string }>, bcc: Array<{ address: string, name?: string }>, subject: string, text: ((string) | (null)), html: ((string) | (null)), state: ((\"pending\") | (\"ready\") | (\"sent\")), deliveryStatus: ((\"unknown\") | (\"sent\") | (\"delivered\") | (\"bounced\")), attempts: number, lastError: ((string) | (null)), providerMessageId: ((string) | (null)), source: ((\"http\") | (\"smtp\")), createdAt: string, reviewedAt: ((string) | (null)), sentAt: ((string) | (null)) } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/emails/types.ts": 2725148763
+  }
+}
