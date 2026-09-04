@@ -47,10 +47,15 @@ export const createSession = async (
   return { token, session: session! };
 };
 
-/** Sign in (spec §5.1). Disabled accounts - and everyone under a disabled admin - are refused. */
+/**
+ * Sign in (spec §5.1). Disabled accounts - and everyone under a disabled admin - are
+ * refused. With a second factor enrolled, the TOTP code is required as well: a missing
+ * or wrong one answers totp_required so the UI can ask for it.
+ * */
 export const signIn = async (input: {
   email: string;
   password: string;
+  totpCode?: string | undefined;
 }): Promise<{ token: string; user: UserRow }> => {
   const user = await findUserByEmail(input.email);
   if (!user || !(await verifyPassword(user.password_hash, input.password))) {
@@ -58,6 +63,15 @@ export const signIn = async (input: {
   }
   if (await isBlocked(user)) {
     throw unauthenticated("This account is disabled", "account_disabled");
+  }
+  if (user.totp_enabled_at && user.totp_secret) {
+    const { verifyTotp } = await import("../confirmation/totp");
+    if (!verifyTotp(user, input.totpCode)) {
+      throw unauthenticated(
+        input.totpCode ? "The authenticator code is not valid" : "Enter the code from your authenticator app",
+        "totp_required",
+      );
+    }
   }
   const { token } = await createSession(user.id);
   return { token, user };

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/solid-query";
 import { createSignal, Show } from "solid-js";
 
 import { Button, ErrorNote, Field } from "~/components/ui";
-import { api, errorMessage } from "~/lib/api";
+import { api, errorCode, errorMessage } from "~/lib/api";
 import { useResetSession } from "~/lib/session";
 
 /**
@@ -41,12 +41,15 @@ function CredentialsForm(props: {
   hint?: string;
   submitLabel: string;
   minPassword: number;
-  submit: (input: { email: string; password: string }) => Promise<unknown>;
+  submit: (input: { email: string; password: string; totpCode?: string }) => Promise<unknown>;
+  withTotp?: boolean;
 }) {
   const navigate = useNavigate();
   const resetSession = useResetSession();
   const [email, setEmail] = createSignal("");
   const [password, setPassword] = createSignal("");
+  const [totpCode, setTotpCode] = createSignal("");
+  const [needsTotp, setNeedsTotp] = createSignal(false);
   const [error, setError] = createSignal<string | null>(null);
   const [busy, setBusy] = createSignal(false);
 
@@ -55,11 +58,18 @@ function CredentialsForm(props: {
     setBusy(true);
     setError(null);
     try {
-      await props.submit({ email: email(), password: password() });
+      await props.submit({ email: email(), password: password(), ...(totpCode() ? { totpCode: totpCode() } : {}) });
       await resetSession();
       navigate("/", { replace: true });
     } catch (err) {
-      setError(errorMessage(err));
+      if (props.withTotp && errorCode(err) === "totp_required") {
+        // the account has a second factor: ask for the code, keep email and password
+        const first = !needsTotp();
+        setNeedsTotp(true);
+        if (!first) setError(errorMessage(err));
+      } else {
+        setError(errorMessage(err));
+      }
     } finally {
       setBusy(false);
     }
@@ -82,6 +92,15 @@ function CredentialsForm(props: {
         autocomplete={props.minPassword > 1 ? "new-password" : "current-password"}
         minlength={props.minPassword}
       />
+      <Show when={needsTotp()}>
+        <Field
+          label="Authenticator code"
+          value={totpCode()}
+          onInput={setTotpCode}
+          autocomplete="one-time-code"
+          placeholder="123456"
+        />
+      </Show>
       <ErrorNote message={error()} />
       <Button type="submit" icon="i-tabler-login-2" busy={busy()}>
         {props.submitLabel}
@@ -96,6 +115,7 @@ function SignInForm() {
       title="Sign in"
       submitLabel="Sign in"
       minPassword={1}
+      withTotp
       submit={(json) => api["auth/sign-in"].POST([], { json })}
     />
   );

@@ -134,7 +134,7 @@ export default function ActivityPage() {
                       )}
                     </Show>
                   </td>
-                  <td class="max-w-md px-4 py-2 font-mono text-xs text-gray-600">
+                  <td class="min-w-[16rem] max-w-md whitespace-pre-wrap break-words px-4 py-2 font-mono text-xs text-gray-600">
                     {Object.entries(e.details)
                       .filter(([, v]) => v !== null && v !== undefined && v !== "")
                       .map(([k, v]) => `${k}: ${typeof v === "object" ? JSON.stringify(v) : String(v)}`)

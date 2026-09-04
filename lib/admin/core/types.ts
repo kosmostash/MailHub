@@ -2,8 +2,8 @@ export type Override<A, B> = Omit<A, keyof B> & B;
 
 export type StaticParams = {
   "account": [  ];
-  "admins": [  ];
   "activity": [  ];
+  "admins": [  ];
   "index": [  ];
   "operators": [  ];
   "providers": [  ];
@@ -14,8 +14,8 @@ export type StaticParams = {
 
 export type LinkProps =
   | [ "account",  ]
-    | [ "admins",  ]
     | [ "activity",  ]
+    | [ "admins",  ]
     | [ "index",  ]
     | [ "operators",  ]
     | [ "providers",  ]

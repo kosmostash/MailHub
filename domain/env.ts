@@ -59,8 +59,12 @@ export const env = {
   publicUrl: read("MAILHUB_PUBLIC_URL") ?? "http://localhost:4556",
 
   /** Nodemailer transport URL for system email (spec §2.1.8), e.g. smtp://user:pass@host:587 */
-  systemSmtpUrl: read("MAILHUB_SYSTEM_SMTP_URL"),
-  systemFrom: read("MAILHUB_SYSTEM_FROM") ?? "MailHub <mailhub@localhost>",
+  get systemSmtpUrl() {
+    return read("MAILHUB_SYSTEM_SMTP_URL");
+  },
+  get systemFrom() {
+    return read("MAILHUB_SYSTEM_FROM") ?? "MailHub <mailhub@localhost>";
+  },
 
   /** SMTP ingestion listener (spec §3.6) */
   smtpHost: read("MAILHUB_SMTP_HOST") ?? "0.0.0.0",

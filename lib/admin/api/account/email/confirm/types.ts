@@ -1,17 +1,11 @@
-export type ParamsT1395169366 = {};
-export type JsonTPOST1267901807 = {
-  email: VRefine<string, {
-    format: "email"
-  }>;
-  password: VRefine<string, {
+export type ParamsT3943355885 = {};
+export type JsonTPOST3372350577 = {
+  code: VRefine<string, {
     minLength: 1;
-    maxLength: 200
-  }>;
-  totpCode?: VRefine<string, {
     maxLength: 20
   }>
 };
-export type ResponseTPOST2723787278 = {
+export type ResponseTPOST2223531171 = {
   user: {
     id: string;
     role: (("superadmin") | ("admin") | ("operator"));

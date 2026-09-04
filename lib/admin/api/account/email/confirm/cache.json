@@ -1,11 +1,11 @@
 {
-  "hash": 2243621818,
+  "hash": 416575061,
   "params": {
-    "id": "ParamsT1395169366",
+    "id": "ParamsT3943355885",
     "schema": [],
     "resolvedType": {
       "kind": "TypeLiteral",
-      "name": "ParamsT1395169366",
+      "name": "ParamsT3943355885",
       "parameters": [],
       "comments": [],
       "text": "{}",
@@ -32,43 +32,27 @@
       "method": "POST",
       "target": "json",
       "schema": {
-        "id": "JsonTPOST1267901807",
-        "text": "{\n      email: VRefine<string, { format: \"email\" }>;\n      password: VRefine<string, { minLength: 1; maxLength: 200 }>;\n      /** required once a second factor is enrolled; a missing one answers totp_required */\n      totpCode?: VRefine<string, { maxLength: 20 }>;\n    }",
+        "id": "JsonTPOST3372350577",
+        "text": "{ code: VRefine<string, { minLength: 1; maxLength: 20 }> }",
         "resolvedType": {
           "kind": "TypeLiteral",
-          "name": "JsonTPOST1267901807",
+          "name": "JsonTPOST3372350577",
           "parameters": [],
           "comments": [],
-          "text": "{\n  email: VRefine<string, {\n    format: \"email\"\n  }>;\n  password: VRefine<string, {\n    minLength: 1;\n    maxLength: 200\n  }>;\n  totpCode?: VRefine<string, {\n    maxLength: 20\n  }>\n}",
+          "text": "{\n  code: VRefine<string, {\n    minLength: 1;\n    maxLength: 20\n  }>\n}",
           "properties": [
             {
-              "name": "email",
-              "nameDeclaration": "email",
-              "text": "VRefine<string, {\n    format: \"email\"\n  }>",
+              "name": "code",
+              "nameDeclaration": "code",
+              "text": "VRefine<string, {\n    minLength: 1;\n    maxLength: 20\n  }>",
               "optional": false,
               "readonly": false,
-              "typeboxSchema": "(string with {\n    format: \"email\"\n  })"
-            },
-            {
-              "name": "password",
-              "nameDeclaration": "password",
-              "text": "VRefine<string, {\n    minLength: 1;\n    maxLength: 200\n  }>",
-              "optional": false,
-              "readonly": false,
-              "typeboxSchema": "(string with {\n    minLength: 1;\n    maxLength: 200\n  })"
-            },
-            {
-              "name": "totpCode",
-              "nameDeclaration": "totpCode",
-              "text": "VRefine<string, {\n    maxLength: 20\n  }>",
-              "optional": true,
-              "readonly": false,
-              "typeboxSchema": "(string with {\n    maxLength: 20\n  })"
+              "typeboxSchema": "(string with {\n    minLength: 1;\n    maxLength: 20\n  })"
             }
           ],
           "numericProperties": [],
           "booleanProperties": [],
-          "typeboxSchema": "{ email: (string with {\n    format: \"email\"\n  }), password: (string with {\n    minLength: 1;\n    maxLength: 200\n  }), totpCode?: (string with {\n    maxLength: 20\n  }) }"
+          "typeboxSchema": "{ code: (string with {\n    minLength: 1;\n    maxLength: 20\n  }) }"
         }
       }
     },
@@ -77,13 +61,13 @@
       "target": "response",
       "variants": [
         {
-          "id": "ResponseTPOST2723787278",
+          "id": "ResponseTPOST2223531171",
           "status": 200,
           "contentType": "json",
           "body": "{ user: PublicUser }",
           "resolvedType": {
             "kind": "TypeLiteral",
-            "name": "ResponseTPOST2723787278",
+            "name": "ResponseTPOST2223531171",
             "parameters": [],
             "comments": [],
             "text": "{\n  user: {\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }\n}",

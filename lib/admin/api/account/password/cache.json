@@ -1,0 +1,95 @@
+{
+  "hash": 1148475323,
+  "params": {
+    "id": "ParamsT3182389174",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3182389174",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "ConfirmationRequest",
+        "path": "@/domain/confirmation"
+      },
+      "text": "import type { ConfirmationRequest } from \"@/domain/confirmation\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST3464874783",
+        "text": "{ newPassword: VRefine<string, { minLength: 8; maxLength: 200 }> }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST3464874783",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  newPassword: VRefine<string, {\n    minLength: 8;\n    maxLength: 200\n  }>\n}",
+          "properties": [
+            {
+              "name": "newPassword",
+              "nameDeclaration": "newPassword",
+              "text": "VRefine<string, {\n    minLength: 8;\n    maxLength: 200\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    minLength: 8;\n    maxLength: 200\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ newPassword: (string with {\n    minLength: 8;\n    maxLength: 200\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST3747237406",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ confirmation: ConfirmationRequest }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST3747237406",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  confirmation: {\n    method: ((\"totp\") | (\"email\"));\n    sentTo: ((string) | (null));\n    expiresAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "confirmation",
+                "nameDeclaration": "confirmation",
+                "text": "{\n    method: ((\"totp\") | (\"email\"));\n    sentTo: ((string) | (null));\n    expiresAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ method: ((\"totp\") | (\"email\")), sentTo: ((string) | (null)), expiresAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ confirmation: { method: ((\"totp\") | (\"email\")), sentTo: ((string) | (null)), expiresAt: string } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/confirmation/index.ts": 17799051
+  }
+}
