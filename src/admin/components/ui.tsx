@@ -57,8 +57,17 @@ export function Button(
   );
 }
 
-export function Pill(props: { kind: "pending" | "ready" | "sent" | "bounced" | "muted"; children: JSX.Element }) {
-  return <span class={`pill-${props.kind}`}>{props.children}</span>;
+// literal class names so UnoCSS can see them
+const pillClass = {
+  pending: "pill-pending",
+  ready: "pill-ready",
+  sent: "pill-sent",
+  bounced: "pill-bounced",
+  muted: "pill-muted",
+} as const;
+
+export function Pill(props: { kind: keyof typeof pillClass; children: JSX.Element }) {
+  return <span class={pillClass[props.kind]}>{props.children}</span>;
 }
 
 export const formatDate = (iso: string | null | undefined): string =>

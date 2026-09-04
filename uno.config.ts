@@ -13,6 +13,7 @@ export default defineConfig({
       },
     }),
   ],
+  safelist: ["pill-pending", "pill-ready", "pill-sent", "pill-bounced", "pill-muted"],
   shortcuts: {
     btn: "inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
     "btn-primary": "btn bg-blue-700 text-white hover:bg-blue-800",

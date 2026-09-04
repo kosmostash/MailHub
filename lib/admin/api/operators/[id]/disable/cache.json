@@ -1,0 +1,83 @@
+{
+  "hash": 2334093337,
+  "params": {
+    "id": "ParamsT3708898614",
+    "schema": [
+      {
+        "type": "param",
+        "kind": "required",
+        "name": "id",
+        "const": "id"
+      }
+    ],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT3708898614",
+      "parameters": [],
+      "comments": [],
+      "text": "{\n  \"id\": string\n}",
+      "properties": [
+        {
+          "name": "id",
+          "nameDeclaration": "\"id\"",
+          "text": "string",
+          "optional": false,
+          "readonly": false,
+          "typeboxSchema": "string"
+        }
+      ],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{ \"id\": string }"
+    }
+  },
+  "methods": [
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "PublicUser",
+        "path": "@/domain/accounts/types"
+      },
+      "text": "import type { PublicUser } from \"@/domain/accounts/types\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST1096408200",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ user: PublicUser }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST1096408200",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  user: {\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "user",
+                "nameDeclaration": "user",
+                "text": "{\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ user: { id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/accounts/types.ts": 396401688
+  }
+}
