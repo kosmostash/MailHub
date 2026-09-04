@@ -1,0 +1,61 @@
+# Local/self-hosted stack: Postgres + the three MailHub processes.
+# The web service also runs migrations on boot; workers wait for it to be healthy.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: mailhub
+      POSTGRES_PASSWORD: mailhub
+      POSTGRES_DB: mailhub
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mailhub"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  web:
+    build: .
+    environment: &env
+      DATABASE_URL: postgres://mailhub:mailhub@postgres:5432/mailhub
+      MAILHUB_SECRET: ${MAILHUB_SECRET:?set MAILHUB_SECRET in .env}
+      MAILHUB_PUBLIC_URL: ${MAILHUB_PUBLIC_URL:-http://localhost:4556}
+      MAILHUB_SYSTEM_SMTP_URL: ${MAILHUB_SYSTEM_SMTP_URL:-}
+      MAILHUB_SYSTEM_FROM: ${MAILHUB_SYSTEM_FROM:-MailHub <mailhub@localhost>}
+    command: sh -c "node --import tsx db/migrate.ts latest && node dist/run.js -p 4556"
+    ports:
+      # web app "/", hub API "/hub", submission API "/api": split exposure at your proxy (spec §3.1)
+      - "4556:4556"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:4556/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  sender:
+    build: .
+    environment: *env
+    command: node dist/workers/sender.js
+    depends_on:
+      web:
+        condition: service_healthy
+
+  smtp:
+    build: .
+    environment:
+      <<: *env
+      MAILHUB_SMTP_PORT: "2525"
+    command: node dist/workers/smtp.js
+    ports:
+      # SMTP ingestion: LAN/DMZ only, never public (spec §3.6)
+      - "2525:2525"
+    depends_on:
+      web:
+        condition: service_healthy
+
+volumes:
+  pgdata:

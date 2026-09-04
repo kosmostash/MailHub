@@ -1,0 +1,18 @@
+# build output dir; if you edit distDir in package.json, make sure to update here too
+/dist/
+
+# used for Vite cache
+/var/
+
+# node_modules dir at any level
+node_modules/
+
+# =========================================================#
+# do not add lib/ here, there is a lib/.gitignore on purpose
+# =========================================================#
+
+# local configuration
+.env
+
+# test and coverage output
+/coverage/
