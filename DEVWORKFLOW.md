@@ -128,11 +128,14 @@ table in the config docs would have saved that hour. Related: with `apiBase: "/"
 bare prefix `/api` answers 404 while `/api/emails` works, which is correct and still
 looked like a bug at first.
 
-**The generated `env.d.ts` speaks Hono in every folder.** The scaffold declares
-`DefaultVariables` and `DefaultBindings` even in an H3 folder, where the thing to augment
-is `DefaultContext` and values live on `event.context`. Middleware in Hono sets context
-with `ctx.set()`, in H3 by assignment. This is documented for Hono; for H3 I found it by
-reading `lib/admin/api.ts`.
+**Context typing differs per backend, and I misread it at first.** A Hono folder's
+`env.d.ts` declares `DefaultVariables` and `DefaultBindings` (set with `ctx.set()`); an H3
+folder's declares `DefaultContext` (values assigned on `event.context`). The scaffold gets
+this right for each backend; I checked by generating a fresh folder of each kind. An
+earlier version of this document claimed the H3 scaffold carried the Hono names. It does
+not; that impression came from a Hono folder I had scaffolded first and then replaced
+with H3. The lesson for readers is only that the names are backend-specific, and that the
+generated `lib/<folder>/api.ts` is where to confirm which one applies.
 
 **The type resolver follows direct imports only.** A response type re-exported through
 `export type { X } from "./registry"` came out of the generator as a bare name and broke
