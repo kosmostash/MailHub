@@ -12,14 +12,15 @@
   "scripts": {
     "dev": "kosmo serve",
     "preview": "kosmo preview",
-    "build": "node scripts/build.mjs",
+    "build": "kosmo build",
     "typecheck": "kosmo typecheck",
     "folder": "kosmo folder",
     "migrate": "tsx db/migrate.ts",
     "sender": "tsx workers/sender.ts",
     "smtp": "tsx workers/smtp.ts",
     "test": "vitest run",
-    "e2e": "node --import tsx test/e2e/walkthrough.mjs"
+    "e2e": "node --import tsx test/e2e/walkthrough.mjs",
+    "postbuild": "tsdown"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.1",

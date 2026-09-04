@@ -41,7 +41,7 @@ reverse proxy by path (see `deploy/Caddyfile`), not in code.
 | --- | --- |
 | `pnpm dev` | KosmoJS dev server for every folder on :4556 (admin app at `/admin`) |
 | `pnpm sender`, `pnpm smtp` | the two worker processes, via tsx |
-| `pnpm build [folder]` | `kosmo build` for all folders or one, then tsdown for the workers (`scripts/build.mjs`) |
+| `pnpm build [folder]` | `kosmo build` for all folders or one; `postbuild` then runs tsdown for the workers |
 | `pnpm typecheck [folder]` | per-folder `tsc` with the generated path mappings; needs a build or dev run first |
 | `pnpm migrate [latest\|rollback\|status\|make <name>]` | knex migrations, TypeScript, through tsx |
 | `pnpm test` | vitest against `TEST_DATABASE_URL`; includes `test/conformance.test.ts` |
@@ -162,10 +162,12 @@ when a route appears and never removed when it disappears; the leftover `fetch.t
 fails the typecheck with a message about a route that no longer exists. Twice I had to
 `rm -rf` a directory in `lib/` and re-run. A prune step in `kosmo build` would fix it.
 
-**`pnpm build admin` sent the folder name to the wrong command.** That is pnpm's
-argument forwarding, not KosmoJS's, but because the natural build script is
-`kosmo build && tsdown`, the framework's per-folder build only works from a wrapper
-script. Worth a note in the docs.
+**`pnpm build admin` sent the folder name to the wrong command**, for a while. pnpm
+appends script arguments to the last command of a script, so with
+`"build": "kosmo build && tsdown"` the folder name reached tsdown and the per-folder build
+never happened. Not KosmoJS's doing, and the fix is idiomatic pnpm: keep `kosmo build` as
+the whole `build` script and put the worker bundle in `postbuild`. I first worked around it
+with a wrapper script, which was the wrong instinct.
 
 **Version skew between packages.** `@kosmojs/core` and `@kosmojs/cli` are 0.4.4; every
 generator is 0.2.1; the READMEs of core, cli and dev still say "TODO: Add package
