@@ -1,0 +1,3 @@
+{
+  "extends": "../../lib/webhooks/tsconfig.json"
+}

@@ -1,0 +1,15 @@
+---
+title: MailHub
+description: One self-hosted hub to store, review, and send the emails from all your projects.
+---
+
+# MailHub
+
+One self-hosted hub to store, review, and send the emails from all your projects.
+
+Projects submit emails to MailHub over HTTP (`POST /api/emails`) or SMTP instead of
+sending them directly. MailHub stores every submission, optionally holds it for review,
+sends it through a configured provider, and tracks the delivery outcome.
+
+Documentation for the submission API, the SMTP listener, providers, and the admin
+application will grow here alongside the implementation.

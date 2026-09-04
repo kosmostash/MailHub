@@ -9,19 +9,21 @@ admins overseeing it.
 
 ## Stack
 
-- [KosmoJS](https://kosmojs.dev) (Hono backend, React frontend, TypeBox validation, typed fetch clients)
+- [KosmoJS](https://kosmojs.dev) (Hono and H3 backends, Solid frontend, MDX docs, TypeBox validation, typed fetch clients)
 - Postgres via Knex
 - UnoCSS with Tabler icons
 
 ## Layout
 
 ```
-src/app/      web application: React pages at "/", session-authenticated API at "/hub"
-src/api/      submission API for client projects at "/api" (emails, webhooks, health)
-domain/       business logic shared by the web app and the workers
-workers/      background sender and SMTP ingestion listener (separate processes)
-db/           knex migration runner and migrations
-test/         vitest suites against a real Postgres
+src/api/       submission API for client projects at "/api" (emails, health) - Hono, private
+src/webhooks/  delivery-event webhooks at "/webhooks/<provider>" - Hono, public
+src/admin/     web application: Solid pages at "/admin", session API at "/admin/api" - H3
+src/docs/      documentation site at "/docs" - MDX
+domain/        business logic shared by the web app, the APIs and the workers
+workers/       background sender and SMTP ingestion listener (separate processes)
+db/            knex migration runner and migrations
+test/          vitest suites against a real Postgres
 ```
 
 ## Development
@@ -32,7 +34,7 @@ Requirements: Node 22, pnpm, Postgres 16.
 cp .env.example .env            # then set DATABASE_URL and MAILHUB_SECRET
 pnpm install
 pnpm migrate                    # apply migrations
-pnpm dev                        # web app + both APIs on http://localhost:4556
+pnpm dev                        # all folders on http://localhost:4556 (admin app at /admin)
 pnpm sender                     # background sender, in another terminal
 pnpm smtp                       # SMTP ingestion listener, in another terminal
 ```
@@ -47,7 +49,7 @@ pnpm test                       # needs TEST_DATABASE_URL (see .env.example)
 
 ## Production
 
-`pnpm build` produces `dist/run.js` (web app and APIs on one port) and
+`pnpm build` produces `dist/run.js` (every folder on one port) and
 `dist/workers/{sender,smtp}.js`. `docker-compose.yml` runs Postgres plus the three
-processes. Expose only `/`, `/hub/*` and `/api/webhooks/*` publicly; keep `/api/emails*`
-and the SMTP port on your LAN.
+processes. Expose `/admin`, `/docs` and `/webhooks` publicly; keep `/api` and the SMTP
+port on your LAN.
