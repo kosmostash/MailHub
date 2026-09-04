@@ -16,6 +16,7 @@ const navFor = (me: Me): Array<NavItem> => {
       return [
         { href: "/", label: "Dashboard", icon: "i-tabler-layout-dashboard" },
         { href: "/operators", label: "Operators", icon: "i-tabler-users" },
+        { href: "/providers", label: "Providers", icon: "i-tabler-server" },
       ];
     default:
       return [{ href: "/", label: "Dashboard", icon: "i-tabler-layout-dashboard" }];

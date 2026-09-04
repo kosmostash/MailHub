@@ -2,6 +2,7 @@ import { useNavigate } from "@solidjs/router";
 import { useQuery, useQueryClient } from "@tanstack/solid-query";
 import { createSignal, For, Show } from "solid-js";
 
+import Link from "~/components/Link";
 import { api, errorMessage } from "~/lib/api";
 import { useResetSession } from "~/lib/session";
 import { Button, ErrorNote, Field, formatDate, Pill } from "./ui";
@@ -65,11 +66,11 @@ export function AccountsPage(props: { kind: Kind }) {
           onCancel={() => setCreating(false)}
         />
       </Show>
-      <Show when={resetting()}>
+      <Show when={resetting()} keyed>
         {(row) => (
           <ResetPasswordForm
             kind={props.kind}
-            row={row()}
+            row={row}
             onDone={async () => {
               setResetting(null);
               await refresh();
@@ -129,6 +130,13 @@ export function AccountsPage(props: { kind: Kind }) {
                   </td>
                   <td class="px-4 py-2">
                     <div class="flex justify-end gap-2">
+                      <Link
+                        to={["index"]}
+                        query={props.kind === "admins" ? { adminId: row.id } : { operatorId: row.id }}
+                        class="btn-secondary"
+                      >
+                        <span class="i-tabler-folders" aria-hidden="true" /> Collections
+                      </Link>
                       <Button variant="secondary" icon="i-tabler-key" onClick={() => setResetting(row)}>
                         Reset password
                       </Button>

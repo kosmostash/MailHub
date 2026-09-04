@@ -151,3 +151,85 @@ describe("admin API, phase 1", () => {
     expect((await adminTwo.get(api("/me"))).status).toBe(401);
   });
 });
+
+describe("admin API, phase 2: providers and collections (spec §8 step 3)", () => {
+  let root: Client;
+  let adminOne: Client;
+  let providerId: string;
+  let collectionA: string;
+  let collectionB: string;
+
+  it("sets up the accounts", async () => {
+    root = server.client();
+    await root.post(api("/auth/sign-in"), { email: "root@example.test", password });
+    adminOne = server.client();
+    await adminOne.post(api("/auth/sign-in"), { email: "one@example.test", password });
+  });
+
+  it("lets admin one create an SMTP provider, masked in responses", async () => {
+    expect((await adminOne.get(api("/provider-types"))).body.types[0]).toMatchObject({ type: "smtp", implemented: true });
+    const bad = await adminOne.post(api("/providers"), { name: "Main", type: "smtp", config: { host: "", port: 0 } });
+    expect(bad.status).toBe(422);
+    expect(bad.body.error.details).toEqual(expect.arrayContaining([expect.objectContaining({ field: "host" })]));
+
+    const created = await adminOne.post(api("/providers"), {
+      name: "Main",
+      type: "smtp",
+      config: { host: "smtp.example.test", port: 587, secure: false, user: "u", pass: "hunter2" },
+    });
+    expect(created.status).toBe(201);
+    providerId = created.body.provider.id;
+    expect(created.body.provider.config.pass).not.toBe("hunter2");
+
+    // operators never see configs; the superadmin sees masked configs across admins
+    const asRoot = await root.get(api("/providers"));
+    expect(asRoot.body.providers).toHaveLength(1);
+    expect(asRoot.body.providers[0].config.pass).not.toBe("hunter2");
+    expect((await root.post(api("/providers"), { name: "x", type: "smtp", config: {} })).status).toBe(403);
+  });
+
+  it("creates collections as the impersonated operator, assigning the provider", async () => {
+    const operators = await adminOne.get(api("/operators"));
+    const opOneId = operators.body.operators[0].id;
+    expect((await adminOne.post(api("/collections"), { name: "A" })).status).toBe(403);
+
+    expect((await adminOne.post(api("/impersonation"), { userId: opOneId })).status).toBe(200);
+    const list = await adminOne.get(api("/providers"));
+    expect(list.body.providers[0]).toMatchObject({ name: "Main", type: "smtp", config: null });
+
+    const a = await adminOne.post(api("/collections"), { name: "A", scheduleMode: "after_review", providerId });
+    expect(a.status).toBe(201);
+    expect(a.body.collection).toMatchObject({ name: "A", scheduleMode: "after_review", provider: { id: providerId } });
+    collectionA = a.body.collection.id;
+    const b = await adminOne.post(api("/collections"), { name: "B", scheduleMode: "immediate", providerId });
+    collectionB = b.body.collection.id;
+    expect(collectionA).toHaveLength(32);
+    expect(collectionA).not.toBe(collectionB);
+
+    expect((await adminOne.delete(api("/impersonation"))).status).toBe(200);
+  });
+
+  it("shows the admin both collections read-only and refuses the provider delete", async () => {
+    const list = await adminOne.get(api("/collections"));
+    expect(list.body.collections.map((c: { name: string }) => c.name)).toEqual(["A", "B"]);
+    expect(list.body.collections[0].operator.email).toBe("o1@example.test");
+    expect((await adminOne.patch(api(`/collections/${collectionA}`), { name: "Z" })).status).toBe(403);
+    expect((await adminOne.delete(api(`/collections/${collectionA}`))).status).toBe(403);
+
+    const conflict = await adminOne.delete(api(`/providers/${providerId}`));
+    expect(conflict.status).toBe(409);
+    expect(conflict.body.error.code).toBe("provider_in_use");
+
+    // other admin: nothing
+    const adminTwo = server.client();
+    await adminTwo.post(api("/auth/sign-in"), { email: "two@example.test", password });
+    expect((await adminTwo.get(api("/collections"))).body.collections).toEqual([]);
+    expect((await adminTwo.get(api(`/collections/${collectionA}`))).status).toBe(404);
+    expect((await adminTwo.get(api(`/providers/${providerId}`))).status).toBe(404);
+
+    // superadmin: everything, and per-admin drill-down
+    expect((await root.get(api("/collections"))).body.collections).toHaveLength(2);
+    const adminTwoId = (await root.get(api("/admins"))).body.admins[1].id;
+    expect((await root.get(api(`/collections?adminId=${adminTwoId}`))).body.collections).toEqual([]);
+  });
+});
