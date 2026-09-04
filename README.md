@@ -19,7 +19,7 @@ admins overseeing it.
 src/api/       submission API for client projects at "/api" (emails, health) - Hono, private
 src/webhooks/  delivery-event webhooks at "/webhooks/<provider>" - Hono, public
 src/admin/     web application: Solid pages at "/admin", session API at "/admin/api" - H3
-src/docs/      documentation site at "/docs" - MDX
+src/docs/      documentation site at "/" - MDX
 domain/        business logic shared by the web app, the APIs and the workers
 workers/       background sender and SMTP ingestion listener (separate processes)
 db/            knex migration runner and migrations
@@ -51,5 +51,5 @@ pnpm test                       # needs TEST_DATABASE_URL (see .env.example)
 
 `pnpm build` produces `dist/run.js` (every folder on one port) and
 `dist/workers/{sender,smtp}.js`. `docker-compose.yml` runs Postgres plus the three
-processes. Expose `/admin`, `/docs` and `/webhooks` publicly; keep `/api` and the SMTP
+processes. Expose `/` (docs), `/admin` and `/webhooks` publicly; keep `/api` and the SMTP
 port on your LAN.

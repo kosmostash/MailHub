@@ -25,7 +25,7 @@ services:
       MAILHUB_SYSTEM_FROM: ${MAILHUB_SYSTEM_FROM:-MailHub <mailhub@localhost>}
     command: sh -c "node --import tsx db/migrate.ts latest && node dist/run.js -p 4556"
     ports:
-      # /admin, /docs, /webhooks public; /api LAN only - split exposure at your proxy (spec §3.1)
+      # / (docs), /admin, /webhooks public; /api LAN only - split exposure at your proxy (spec §3.1)
       - "4556:4556"
     depends_on:
       postgres:
