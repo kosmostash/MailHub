@@ -1,0 +1,48 @@
+---
+title: Roles and impersonation
+description: Superadmin, admins, operators, and the audited way overseers act.
+---
+
+# Roles and impersonation
+
+```
+superadmin ──▶ admins ──▶ operators ──▶ collections ──▶ emails
+                 └────▶ providers (usable by that admin's operators)
+```
+
+| | Operator | Admin | Superadmin |
+| --- | --- | --- | --- |
+| Collections, review, sending, test addresses | own | read-only across their operators | read-only across everyone |
+| Providers | pick from the admin's | full management | read-only |
+| Accounts | – | their operators | admins |
+| Impersonate | – | own operators | any admin or operator |
+| Activity trail | own | their subtree | everything |
+
+The first run of the admin app creates the **superadmin**. The superadmin creates
+admins; admins create operators.
+
+## Impersonation
+
+Overseers never write in their own identity. To act, an admin impersonates one of their
+operators (the superadmin any admin or operator): the app then shows that identity's data
+with that identity's powers, a banner names both parties, and every action lands in the
+activity trail attributed to the assumed identity **and** marked "via impersonation by …".
+One assumed identity at a time; it does not nest.
+
+## Disabling, reassigning, deleting
+
+- **Disable** an account one level down. Its sessions end at once, its collections refuse
+  submissions with `403`, and its mail stops; a disabled admin covers their whole subtree.
+  Re-enabling lifts exactly what was disabled: an operator disabled on their own stays
+  disabled when their admin comes back.
+- **Reassign** a disabled account's objects to an active one of the same kind: an
+  operator's collections (ids never change, so projects keep working), or an admin's
+  operators and providers together. Name clashes get a suffix; nothing merges.
+- **Delete** only a disabled account that holds nothing. The trail keeps its history.
+
+## Own credentials
+
+Changing your own email or password always takes a confirmation: a one-time code sent to
+the **new** address (email change) or the **current** address (password change), or the
+code from your authenticator app once a second factor is enrolled. Overseers reset a
+password administratively when someone is locked out.

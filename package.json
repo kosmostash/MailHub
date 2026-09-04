@@ -18,7 +18,8 @@
     "migrate": "tsx db/migrate.ts",
     "sender": "tsx workers/sender.ts",
     "smtp": "tsx workers/smtp.ts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "e2e": "node --import tsx test/e2e/walkthrough.mjs"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.1",
@@ -53,6 +54,7 @@
     "@types/nodemailer": "^8.0.1",
     "@types/pg": "^8.23.1",
     "@types/smtp-server": "^3.5.13",
+    "playwright": "1.62.1",
     "preact": "^10.29.8",
     "preact-render-to-string": "^6.7.0",
     "remark-frontmatter": "^5.0.0",

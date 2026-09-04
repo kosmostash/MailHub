@@ -44,12 +44,29 @@ Checks:
 ```sh
 pnpm build
 pnpm typecheck
-pnpm test                       # needs TEST_DATABASE_URL (see .env.example)
+pnpm test                       # Vitest against TEST_DATABASE_URL, incl. the spec §8 conformance run
+pnpm e2e                        # Chromium walkthrough of the admin app (pnpm exec playwright install chromium)
 ```
+
+`test/conformance.test.ts` runs the specification's conformance walk-through end to end
+against the built dispatcher, the real sender process and the SMTP listener.
 
 ## Production
 
 `pnpm build` produces `dist/run.js` (every folder on one port) and
 `dist/workers/{sender,smtp}.js`. `docker-compose.yml` runs Postgres plus the three
 processes. Expose `/` (docs), `/admin` and `/webhooks` publicly; keep `/api` and the SMTP
-port on your LAN.
+port on your LAN. `deploy/Caddyfile` shows that split for Caddy, and the docs site at `/`
+carries the API, SMTP, provider, role and deployment reference.
+
+## Environment
+
+| Variable | Purpose |
+| --- | --- |
+| `DATABASE_URL` | Postgres connection string |
+| `MAILHUB_SECRET` | 32+ random bytes; encrypts provider credentials |
+| `MAILHUB_PUBLIC_URL` | where users reach the admin app |
+| `MAILHUB_SYSTEM_SMTP_URL`, `MAILHUB_SYSTEM_FROM` | transport for confirmation codes; required in production, logged in development when unset |
+| `MAILHUB_SMTP_HOST`, `MAILHUB_SMTP_PORT`, `MAILHUB_SMTP_MAX_MESSAGE_BYTES` | SMTP ingestion listener |
+| `MAILHUB_SENDER_INTERVAL_MS`, `MAILHUB_SENDER_BATCH_SIZE` | background sender |
+| `PORT` | web process |

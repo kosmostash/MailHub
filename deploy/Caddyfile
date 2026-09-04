@@ -1,0 +1,20 @@
+# MailHub behind Caddy: the exposure split from spec §3.1.
+#
+#   /            docs               public
+#   /admin*      web application    public (session-authenticated, 2FA-capable)
+#   /webhooks/*  delivery events    public (providers call it from the internet)
+#   /api/*       submission API     LAN / DMZ only
+#   :2525        SMTP ingestion     LAN / DMZ only (bind the smtp worker to a private interface)
+#
+# Replace mailhub.example.com and the private CIDR, and run the three MailHub processes:
+#   node dist/run.js -p 4556 · node dist/workers/sender.js · node dist/workers/smtp.js
+
+mailhub.example.com {
+	@private {
+		path /api/*
+		not remote_ip 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16
+	}
+	respond @private 403
+
+	reverse_proxy 127.0.0.1:4556
+}

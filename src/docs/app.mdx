@@ -1,3 +1,18 @@
 import { AppProvider } from "_/app";
+import Link from "~/components/Link";
+import "./styles.css";
 
-<AppProvider>{props.children}</AppProvider>
+<AppProvider>
+  <div class="docs">
+    <nav>
+      <Link to={["index"]} class="brand">MailHub</Link>
+      <Link to={["submission"]}>Submitting email (HTTP)</Link>
+      <Link to={["smtp"]}>Submitting email (SMTP)</Link>
+      <Link to={["providers"]}>Providers and delivery</Link>
+      <Link to={["roles"]}>Roles and impersonation</Link>
+      <Link to={["deploy"]}>Deploying</Link>
+      <a href="/admin">Open the admin app →</a>
+    </nav>
+    <main>{props.children}</main>
+  </div>
+</AppProvider>

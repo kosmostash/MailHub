@@ -7,9 +7,24 @@ description: One self-hosted hub to store, review, and send the emails from all 
 
 One self-hosted hub to store, review, and send the emails from all your projects.
 
-Projects submit emails to MailHub over HTTP (`POST /api/emails`) or SMTP instead of
-sending them directly. MailHub stores every submission, optionally holds it for review,
-sends it through a configured provider, and tracks the delivery outcome.
+Projects **submit** emails to MailHub instead of sending them directly, over HTTP or
+plain SMTP. MailHub **stores** every submission, optionally **holds it for review**,
+**sends** it through a configured delivery provider, and **tracks** the delivery outcome.
+A single web interface at [/admin](/admin) covers all projects at once.
 
-Documentation for the submission API, the SMTP listener, providers, and the admin
-application will grow here alongside the implementation.
+## In three steps
+
+1. An admin configures a **provider** (SMTP credentials) and creates an **operator**.
+2. The operator creates a **collection** per project. Its id is the API key.
+3. The project sends mail to MailHub with that key. Reviewed or immediate, it goes out
+   through the provider, and the project can poll what happened.
+
+## Where things are
+
+| Surface | Path | Exposure |
+| --- | --- | --- |
+| Submission API | `/api/emails`, `/api/emails/{id}`, `/api/health` | private: LAN / DMZ only |
+| SMTP ingestion | port 2525 (configurable) | private: LAN / DMZ only |
+| Delivery webhooks | `/webhooks/{provider}` | public |
+| Admin application | `/admin` | public, session-authenticated, 2FA-capable |
+| These docs | `/` | public |

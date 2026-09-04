@@ -1,0 +1,70 @@
+---
+title: Submitting email over HTTP
+description: The JSON submission API client projects program against.
+---
+
+# Submitting email over HTTP
+
+Every request identifies its collection with the `x-collection-id` header. The
+collection id, shown on the collection page in the admin app, is the only credential.
+
+<div class="note">
+The submission API is meant to be reachable from your own projects' backends only.
+Deploy it on a private network; see <a href="/deploy">Deploying</a>.
+</div>
+
+## `POST /api/emails`
+
+```http
+POST /api/emails
+x-collection-id: 1URi-bqEzfxji6UM2arsH3QVMY-knp9q
+content-type: application/json
+
+{
+  "from": { "address": "app@example.com", "name": "My App" },
+  "to": ["user@example.com"],
+  "cc": [],
+  "bcc": [],
+  "subject": "Welcome aboard",
+  "text": "Hello!",
+  "html": "<h1>Hello!</h1>"
+}
+```
+
+Addresses are strings or `{ "address", "name" }` objects. At least one of `text` and
+`html` is required. The response is `201` with the stored email:
+
+```json
+{
+  "id": "cb14a59e-3684-4f98-ae61-54fc43270d45",
+  "state": "pending",
+  "deliveryStatus": "unknown",
+  "attempts": 0,
+  "createdAt": "2026-09-04T08:23:36.000Z"
+}
+```
+
+`state` is `pending` when the collection holds submissions for review, `ready` when it
+sends immediately. Submission only stores: the response never waits for a send.
+
+## `GET /api/emails/{id}`
+
+Returns the same shape, so the project can track what happened: `state` moves from
+`pending` to `ready` to `sent`; `deliveryStatus` moves from `unknown` to `sent`, then
+`delivered` or `bounced` when the provider reports it; `lastError` and `attempts` show
+failed hand-offs. Ids from other collections answer `404`.
+
+## Errors
+
+| Status | Meaning |
+| --- | --- |
+| `401` | unknown or missing `x-collection-id` |
+| `403` | the collection's operator or admin is disabled; reach for a human, not a config fix |
+| `404` | no such email in this collection |
+| `422` | invalid payload; `error.details` lists the fields |
+
+Every error body is `{ "error": { "code", "message", "details"? } }`.
+
+## `GET /api/health`
+
+`200 { "ok": true }` when the service and its database respond.
