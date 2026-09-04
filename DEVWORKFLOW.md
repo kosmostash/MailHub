@@ -47,6 +47,14 @@ reverse proxy by path (see `deploy/Caddyfile`), not in code.
 | `pnpm test` | vitest against `TEST_DATABASE_URL`; includes `test/conformance.test.ts` |
 | `pnpm e2e` | Chromium walkthrough of the admin app against a fresh database |
 
+`package.json` pins the package manager (`packageManager: pnpm@10.33.0`). Corepack in the
+Docker image, `pnpm/action-setup` in CI and any developer's pnpm 9.7+ all switch to that
+version, so installs match the lockfile. Without the pin, corepack fetches the newest pnpm,
+and pnpm 11 refuses any version published less than a day earlier
+(`minimumReleaseAge`, 1440 minutes by default since 11), which this project trips on
+because it tracks KosmoJS releases within hours. `.npmrc` exempts `@kosmojs/*` from that
+window for the day the pin moves to pnpm 11.
+
 Tests need a real Postgres. Nothing is mocked at the database layer, on purpose: the partial
 unique index that guarantees a single superadmin, `SKIP LOCKED` in the sender, cascade and
 restrict rules on foreign keys are the product, and mocks would hide them.
@@ -196,6 +204,8 @@ frontend folder in `package.json`.
 - H3 wrapping thrown errors in its own `HTTPError`; unwrap `cause` in the error handler.
 - Playwright's `getByLabel` matching a wrapping `<label>`'s full text, options included.
   Give selects `id`/`for` pairs.
+- pnpm 11's default `minimumReleaseAge` rejecting a lockfile full of day-old packages in
+  Docker. Pin `packageManager` in `package.json`.
 
 ### Verdict
 
