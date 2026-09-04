@@ -1,0 +1,128 @@
+{
+  "hash": 4048648641,
+  "params": {
+    "id": "ParamsT99609533",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT99609533",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "POST",
+    "DELETE"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "PublicUser",
+        "path": "@/domain/accounts/types"
+      },
+      "text": "import type { PublicUser } from \"@/domain/accounts/types\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST1315299790",
+        "text": "{ userId: VRefine<string, { pattern: \"^[0-9a-fA-F-]{36}$\" }> }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST1315299790",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  userId: VRefine<string, {\n    pattern: \"^[0-9a-fA-F-]{36}$\"\n  }>\n}",
+          "properties": [
+            {
+              "name": "userId",
+              "nameDeclaration": "userId",
+              "text": "VRefine<string, {\n    pattern: \"^[0-9a-fA-F-]{36}$\"\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    pattern: \"^[0-9a-fA-F-]{36}$\"\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ userId: (string with {\n    pattern: \"^[0-9a-fA-F-]{36}$\"\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST2526291999",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ actor: PublicUser }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST2526291999",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  actor: {\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "actor",
+                "nameDeclaration": "actor",
+                "text": "{\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ actor: { id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string } }"
+          }
+        }
+      ]
+    },
+    {
+      "method": "DELETE",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTDELETE2526291999",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ actor: PublicUser }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTDELETE2526291999",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  actor: {\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "actor",
+                "nameDeclaration": "actor",
+                "text": "{\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ actor: { id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/accounts/types.ts": 396401688
+  }
+}

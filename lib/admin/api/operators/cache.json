@@ -1,0 +1,144 @@
+{
+  "hash": 4239171903,
+  "params": {
+    "id": "ParamsT2171001370",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT2171001370",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "GET",
+    "POST"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "PublicUser",
+        "path": "@/domain/accounts/types"
+      },
+      "text": "import type { PublicUser } from \"@/domain/accounts/types\";"
+    },
+    {
+      "importDeclaration": {
+        "name": "AccountSummary",
+        "path": "@/domain/accounts/users"
+      },
+      "text": "import type { AccountSummary } from \"@/domain/accounts/users\";"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET4127678278",
+          "status": 200,
+          "contentType": "json",
+          "body": "{ operators: Array<AccountSummary> }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTGET4127678278",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  operators: Array<(({\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }) & ({\n    operators: number;\n    providers: number;\n    collections: number;\n    pending: number;\n    lastActivityAt: ((string) | (null))\n  }))>\n}",
+            "properties": [
+              {
+                "name": "operators",
+                "nameDeclaration": "operators",
+                "text": "Array<(({\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }) & ({\n    operators: number;\n    providers: number;\n    collections: number;\n    pending: number;\n    lastActivityAt: ((string) | (null))\n  }))>",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "Array<(({ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }) & ({ operators: number, providers: number, collections: number, pending: number, lastActivityAt: ((string) | (null)) }))>"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ operators: Array<(({ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }) & ({ operators: number, providers: number, collections: number, pending: number, lastActivityAt: ((string) | (null)) }))> }"
+          }
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "target": "json",
+      "schema": {
+        "id": "JsonTPOST3161559725",
+        "text": "{\n      email: VRefine<string, { format: \"email\" }>;\n      password: VRefine<string, { minLength: 8; maxLength: 200 }>;\n    }",
+        "resolvedType": {
+          "kind": "TypeLiteral",
+          "name": "JsonTPOST3161559725",
+          "parameters": [],
+          "comments": [],
+          "text": "{\n  email: VRefine<string, {\n    format: \"email\"\n  }>;\n  password: VRefine<string, {\n    minLength: 8;\n    maxLength: 200\n  }>\n}",
+          "properties": [
+            {
+              "name": "email",
+              "nameDeclaration": "email",
+              "text": "VRefine<string, {\n    format: \"email\"\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    format: \"email\"\n  })"
+            },
+            {
+              "name": "password",
+              "nameDeclaration": "password",
+              "text": "VRefine<string, {\n    minLength: 8;\n    maxLength: 200\n  }>",
+              "optional": false,
+              "readonly": false,
+              "typeboxSchema": "(string with {\n    minLength: 8;\n    maxLength: 200\n  })"
+            }
+          ],
+          "numericProperties": [],
+          "booleanProperties": [],
+          "typeboxSchema": "{ email: (string with {\n    format: \"email\"\n  }), password: (string with {\n    minLength: 8;\n    maxLength: 200\n  }) }"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTPOST1080207186",
+          "status": 201,
+          "contentType": "json",
+          "body": "{ user: PublicUser }",
+          "resolvedType": {
+            "kind": "TypeLiteral",
+            "name": "ResponseTPOST1080207186",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  user: {\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }\n}",
+            "properties": [
+              {
+                "name": "user",
+                "nameDeclaration": "user",
+                "text": "{\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [],
+            "typeboxSchema": "{ user: { id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string } }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/accounts/types.ts": 396401688,
+    "domain/accounts/users.ts": 690377004
+  }
+}

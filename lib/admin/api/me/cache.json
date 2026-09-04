@@ -1,0 +1,91 @@
+{
+  "hash": 3999600419,
+  "params": {
+    "id": "ParamsT2891092674",
+    "schema": [],
+    "resolvedType": {
+      "kind": "TypeLiteral",
+      "name": "ParamsT2891092674",
+      "parameters": [],
+      "comments": [],
+      "text": "{}",
+      "properties": [],
+      "numericProperties": [],
+      "booleanProperties": [],
+      "typeboxSchema": "{  }"
+    }
+  },
+  "methods": [
+    "GET"
+  ],
+  "typeDeclarations": [
+    {
+      "importDeclaration": {
+        "name": "PublicUser",
+        "path": "@/domain/accounts/types"
+      },
+      "text": "import type { PublicUser } from \"@/domain/accounts/types\";"
+    },
+    {
+      "typeAliasDeclaration": {
+        "name": "Me"
+      },
+      "text": "export type Me = {\n  /** who signed in */\n  principal: PublicUser;\n  /** who is acting - the impersonated identity, or the principal */\n  actor: PublicUser;\n  impersonating: boolean;\n};"
+    }
+  ],
+  "validationDefinitions": [
+    {
+      "method": "GET",
+      "target": "response",
+      "variants": [
+        {
+          "id": "ResponseTGET2312992634",
+          "status": 200,
+          "contentType": "json",
+          "body": "Me",
+          "resolvedType": {
+            "kind": "TypeReference",
+            "name": "ResponseTGET2312992634",
+            "parameters": [],
+            "comments": [],
+            "text": "{\n  principal: {\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  };\n  actor: {\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  };\n  impersonating: boolean\n}",
+            "properties": [
+              {
+                "name": "principal",
+                "nameDeclaration": "principal",
+                "text": "{\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }"
+              },
+              {
+                "name": "actor",
+                "nameDeclaration": "actor",
+                "text": "{\n    id: string;\n    role: ((\"superadmin\") | (\"admin\") | (\"operator\"));\n    adminId: ((string) | (null));\n    email: string;\n    disabled: boolean;\n    disabledAt: ((string) | (null));\n    totpEnabled: boolean;\n    createdAt: string\n  }",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "{ id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }"
+              },
+              {
+                "name": "impersonating",
+                "nameDeclaration": "impersonating",
+                "text": "boolean",
+                "optional": false,
+                "readonly": false,
+                "typeboxSchema": "boolean"
+              }
+            ],
+            "numericProperties": [],
+            "booleanProperties": [
+              "impersonating"
+            ],
+            "typeboxSchema": "{ principal: { id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }, actor: { id: string, role: ((\"superadmin\") | (\"admin\") | (\"operator\")), adminId: ((string) | (null)), email: string, disabled: boolean, disabledAt: ((string) | (null)), totpEnabled: boolean, createdAt: string }, impersonating: boolean }"
+          }
+        }
+      ]
+    }
+  ],
+  "referencedFiles": {
+    "domain/accounts/types.ts": 396401688
+  }
+}

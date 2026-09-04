@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "kosmo serve",
     "preview": "kosmo preview",
-    "build": "kosmo build && tsdown",
+    "build": "node scripts/build.mjs",
     "typecheck": "kosmo typecheck",
     "folder": "kosmo folder",
     "migrate": "tsx db/migrate.ts",
